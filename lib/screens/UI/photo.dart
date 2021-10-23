@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:instadownload/screens/widgets/CenterFBtn.dart';
 
 class PhotoSection extends StatelessWidget {
   const PhotoSection({
@@ -7,8 +9,24 @@ class PhotoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+        },
+        label: FloatingActionBtn(
+          icon: Icon(
+            FeatherIcons.arrowDownCircle,
+            // FeatherIcons.download,
+            color: Colors.white,
+            size: 18,
+          ),
+          titleText: Text(
+            "Get Photo",
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
+        ),
+      ),
     );
   }
 }

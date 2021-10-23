@@ -12,16 +12,19 @@ class ProfileSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CenterFloatingActionButton(
-        icon: Icon(
-          FeatherIcons.arrowDownCircle,
-          // FeatherIcons.download,
-          color: Colors.white,
-          size: 18,
-        ),
-        titleText: Text(
-          "Get Profile",
-          style: TextStyle(fontWeight: FontWeight.w500),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: FloatingActionBtn(
+          icon: Icon(
+            FeatherIcons.arrowDownCircle,
+            // FeatherIcons.download,
+            color: Colors.white,
+            size: 18,
+          ),
+          titleText: Text(
+            "Get Profile",
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
         ),
       ),
     );

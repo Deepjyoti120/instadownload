@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.instadownload",
+  "applicationId": "com.instaexport.instadownload",
   "variantName": "processDebugResources",
   "elements": [
     {

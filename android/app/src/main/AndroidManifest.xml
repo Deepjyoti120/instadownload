@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
    <application
-        android:label="instadownload"
+        android:label="Instaexport"
         android:icon="@mipmap/ic_launcher">
         <provider
     android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"

@@ -108,7 +108,7 @@ MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\Sam\.gradle\caches\trans
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0] C:\Users\Sam\.gradle\caches\transforms-2\files-2.1\7d77d4ebbaf550305d01ed54778f79fb\core-1.6.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:7:9-38
+		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:7:9-36
 	android:icon
 		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:8:9-43
 activity#com.example.instadownload.MainActivity
