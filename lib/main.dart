@@ -1,6 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:instadownload/screens/UI/photo.dart';
+import 'package:instadownload/screens/UI/profile.dart';
+import 'package:instadownload/screens/UI/video.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Bottom Nav Bar")),
+      appBar: AppBar(title: Text("Insta Export")),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
@@ -50,22 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
             setState(() => _currentIndex = index);
           },
           children: [
-            Container(
-              color: Colors.pink,
-              child: Text('data'),
-            ),
-            Container(
-              color: Colors.blueGrey,
-            ),
-            Container(
-              color: Colors.red,
-            ),
-            Container(
-              color: Colors.green,
-            ),
-            Container(
-              color: Colors.blue,
-            ),
+            ProfileSection(),
+            PhotoSection(),
+            VideoSection(),
           ],
         ),
       ),
@@ -77,20 +68,32 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         items: [
           BottomNavyBarItem(
-            icon: Icon(Icons.apps),
-            title: Text('Profile'),
+            icon: Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: Icon(FeatherIcons.userCheck),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: Text('Profile'),
+            ),
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-              title: Text('Photo'),
-              // activeColor: Colors.pink,
-              textAlign: TextAlign.center,
-              icon: Icon(Icons.home)),
+            title: Text('Photo'),
+            // activeColor: Colors.pink,
+            textAlign: TextAlign.center,
+            icon: Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: Icon(FeatherIcons.camera)),
+          ),
           BottomNavyBarItem(
-              title: Text('Video'),
-              // activeColor: Colors.pink,
-              textAlign: TextAlign.center,
-              icon: Icon(Icons.home)),
+            title: Text('Video'),
+            // activeColor: Colors.pink,
+            textAlign: TextAlign.center,
+            icon: Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: Icon(FeatherIcons.film)),
+          ),
         ],
       ),
     );
