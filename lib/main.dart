@@ -21,6 +21,11 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => IntroscreenCubit(),
       child: MaterialApp(
+        // theme: ThemeData(
+        //   textTheme: GoogleFonts.ptSansTextTheme(
+        //     Theme.of(context).textTheme,
+        //   ),
+        // ),
         title: 'Instaexport',
         // home: MainInsta(),
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(

@@ -27,10 +27,13 @@ class _IntroInstaState extends State<IntroInsta> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
-
+    const bodyStyle = TextStyle(fontSize: 16.0);
     const pageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      titleTextStyle: TextStyle(
+        fontSize: 26,
+        color: Colors.black,
+        fontFamily: 'Oleo_Script_Swash_Caps',
+      ),
       bodyTextStyle: bodyStyle,
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       pageColor: Colors.white,
@@ -42,23 +45,22 @@ class _IntroInstaState extends State<IntroInsta> {
       // globalBackgroundColor: Colors.white,
       pages: [
         PageViewModel(
-          title: "Fractional shares",
-          body:
-              "Instead of having to buy an entire share, invest any amount you want.",
+          title: "Get profile",
+          body: "Get Any Instagram Profile Pic using Instaexport",
           image: _buildImage('assets/images/img1.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "Get photos",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Extract Instagram photos and Share where you want using Instaexport",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "Get videos",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Extract Instagram Videos, Reels and Share them to  where you want using Instaexport",
           image: _buildImage('img2.jpg'),
           decoration: pageDecoration,
         ),

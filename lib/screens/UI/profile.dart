@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:instadownload/screens/widgets/CenterFBtn.dart';
+import 'package:instadownload/screens/widgets/searchField.dart';
 
 class ProfileSection extends StatelessWidget {
   const ProfileSection({
@@ -11,6 +12,7 @@ class ProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.red,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
@@ -25,6 +27,22 @@ class ProfileSection extends StatelessWidget {
             "Get Profile",
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 26.0,
+        ),
+        child: Column(
+          children: [
+            SearchField(),
+            SizedBox(
+              height: 40,
+            ),
+            SearchField(),
+          ],
         ),
       ),
     );
