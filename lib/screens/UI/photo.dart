@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:instadownload/screens/widgets/CenterFBtn.dart';
+import 'package:instadownload/screens/widgets/searchField.dart';
 
 class PhotoSection extends StatelessWidget {
   const PhotoSection({
@@ -12,8 +13,7 @@ class PhotoSection extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-        },
+        onPressed: () {},
         label: FloatingActionBtn(
           icon: Icon(
             FeatherIcons.arrowDownCircle,
@@ -25,6 +25,47 @@ class PhotoSection extends StatelessWidget {
             "Get Photo",
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 26.0,
+        ),
+        child: Column(
+          children: [
+            // SearchField(
+            //   labelText: 'ffff'
+            // ),
+            // SizedBox(
+            //   height: 40,
+            // ),
+            // SearchField(),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: Text('Paste'),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: Text('Verify'),
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

@@ -1,14 +1,21 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:instadownload/screens/widgets/CenterFBtn.dart';
 import 'package:instadownload/screens/widgets/searchField.dart';
 
-class ProfileSection extends StatelessWidget {
+class ProfileSection extends StatefulWidget {
   const ProfileSection({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ProfileSection> createState() => _ProfileSectionState();
+}
+
+class _ProfileSectionState extends State<ProfileSection> {
+  TextEditingController pasteValue = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +44,41 @@ class ProfileSection extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SearchField(),
-            SizedBox(
-              height: 40,
-            ),
-            SearchField(),
+            SearchField(labelText: 'dgdgdg', pasteValue: pasteValue),
+            // SizedBox(
+            //   height: 40,
+            // ),
+            // SearchField(),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    FlutterClipboard.paste().then((value) {
+                      setState(() {
+                        pasteValue.text = value;
+                        // pasteValue = value;
+                      });
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: Text('Paste'),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: Text('Verify'),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

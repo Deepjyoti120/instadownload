@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // home: MainInsta(),
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
-            if (state.introScreenValue == false) {
+            if (state.introScreenValue == true) {
               return IntroInsta();
             }
             return MainInsta();
