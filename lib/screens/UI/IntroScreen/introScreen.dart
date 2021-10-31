@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instadownload/cubit/introscreen_cubit.dart';
-import 'package:instadownload/screens/UI/homeScreen.dart';
+import 'package:instaget/cubit/introscreen_cubit.dart';
+import 'package:instaget/screens/UI/homeScreen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroInsta extends StatefulWidget {
@@ -46,22 +46,31 @@ class _IntroInstaState extends State<IntroInsta> {
       pages: [
         PageViewModel(
           title: "Get profile",
-          body: "Get Any Instagram Profile Pic using Instaexport",
-          image: _buildImage('assets/images/img1.jpg'),
+          body: "Get your Instagram Profile Pic using Instaexport",
+          image:
+              SafeArea(child: _buildImage('assets/images/introProfile1.jpg')),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Get photos",
           body:
               "Extract Instagram photos and Share where you want using Instaexport",
-          image: _buildImage('img2.jpg'),
+          image: SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: _buildImage('assets/images/postImg.png'),
+          )),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Get videos",
           body:
               "Extract Instagram Videos, Reels and Share them to  where you want using Instaexport",
-          image: _buildImage('img2.jpg'),
+          image: Padding(
+            padding: const EdgeInsets.fromLTRB(50, 50, 50, 0),
+            child: SafeArea(
+                child: _buildImage('assets/images/BrightButterfly.gif')),
+          ),
           decoration: pageDecoration,
         ),
       ],

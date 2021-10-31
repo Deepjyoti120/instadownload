@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:instadownload/screens/UI/photo.dart';
-import 'package:instadownload/screens/UI/profile.dart';
-import 'package:instadownload/screens/UI/video.dart';
+import 'package:instaget/screens/UI/photo.dart';
+import 'package:instaget/screens/UI/profile.dart';
+import 'package:instaget/screens/UI/video.dart';
 
 class MainInsta extends StatefulWidget {
   @override
@@ -63,6 +63,7 @@ class _MainInstaState extends State<MainInsta> {
         },
         items: [
           BottomNavyBarItem(
+            activeColor: _currentIndex == 0 ? Colors.red : Colors.blue,
             icon: Padding(
               padding: const EdgeInsets.only(left: 6),
               child: Icon(FeatherIcons.userCheck),
@@ -74,6 +75,7 @@ class _MainInstaState extends State<MainInsta> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
+            activeColor: _currentIndex == 1 ? Colors.red : Colors.blue,
             title: Text('Photo'),
             // activeColor: Colors.pink,
             textAlign: TextAlign.center,
@@ -82,6 +84,7 @@ class _MainInstaState extends State<MainInsta> {
                 child: Icon(FeatherIcons.camera)),
           ),
           BottomNavyBarItem(
+            activeColor: _currentIndex == 2 ? Colors.red : Colors.blue,
             title: Text('Video'),
             // activeColor: Colors.pink,
             textAlign: TextAlign.center,

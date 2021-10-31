@@ -14,6 +14,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      textCapitalization: TextCapitalization.sentences,
       controller: pasteValue,
       // cursorColor: Colors.yellow,
       // style: TextStyle(

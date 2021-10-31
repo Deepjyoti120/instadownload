@@ -1,4 +1,4 @@
-# instadownload
+# instaget
 
 A new Flutter project.
 

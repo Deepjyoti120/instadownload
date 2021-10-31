@@ -1,5 +1,3 @@
-
-
 part of 'introscreen_cubit.dart';
 
 class IntroscreenState {

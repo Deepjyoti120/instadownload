@@ -1,4 +1,4 @@
-name: instadownload
+name: instaget
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -13,14 +13,10 @@ dependencies:
     sdk: flutter
     
   cupertino_icons: ^1.0.2
-  flutter_insta: ^1.0.0
   flutter_downloader: ^1.7.1
-  http: ^0.13.4
-  path_provider: ^2.0.5
+  http: ^0.13.4 
   permission_handler: ^8.2.5
   url_launcher: ^6.0.12
-  android_path_provider: ^0.3.0
-  device_info_plus: ^3.1.0
   bottom_navy_bar: ^6.0.0
   clipboard: ^0.1.3
   flutter_feather_icons: ^2.0.0+1
@@ -28,6 +24,8 @@ dependencies:
   hydrated_bloc: ^7.1.0
   google_fonts: ^2.1.0
   introduction_screen: ^2.1.0
+  cached_network_image: ^3.1.0
+  google_mobile_ads: ^0.13.5
 
 dev_dependencies:
   flutter_test:
