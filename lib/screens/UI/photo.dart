@@ -3,6 +3,8 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:instaget/ads/adsHelper.dart';
 import 'package:instaget/api/instaGet.dart';
 import 'package:instaget/screens/widgets/CenterFBtn.dart';
 import 'package:instaget/screens/widgets/progressAwesome.dart';
@@ -21,25 +23,85 @@ class PhotoSection extends StatefulWidget {
 class _PhotoSectionState extends State<PhotoSection> {
   final TextEditingController pastePhotoLink = TextEditingController();
   InstaGet flutterInsta = InstaGet();
+  BannerAd? _ad;
+  BannerAd? _adMR;
+  bool? isLoaded;
+  bool? isLoadedMR;
+
+  @override
+  void initState() {
+    super.initState();
+    _ad = BannerAd(
+      size: AdSize.fullBanner,
+      // size: AdSize.mediumRectangle,
+      adUnitId: AdsHelper.bannerAdUnitId,
+      request: AdRequest(),
+      listener: BannerAdListener(onAdLoaded: (_) {
+        setState(() {
+          isLoaded = true;
+        });
+      }, onAdFailedToLoad: (context, error) {
+        print('object');
+      }),
+    );
+    _adMR = BannerAd(
+      size: AdSize.mediumRectangle,
+      adUnitId: AdsHelper.mediumRectangleAdUnitId,
+      request: AdRequest(),
+      listener: BannerAdListener(onAdLoaded: (_) {
+        setState(() {
+          isLoadedMR = true;
+        });
+      }, onAdFailedToLoad: (context, error) {
+        print('object');
+      }),
+    );
+    _ad!.load();
+    _adMR!.load();
+  }
+
+  @override
+  void dispose() {
+    _ad!.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 2,
-        onPressed: () {
-          downloadPhoto();
-        },
-        label: FloatingActionBtn(
-          icon: Icon(
-            FeatherIcons.arrowDownCircle,
-            // FeatherIcons.download,
-            color: Colors.white,
-            size: 18,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          gradient: RadialGradient(
+            center: Alignment(-0.61, 1.18),
+            radius: 0.953,
+            colors: [
+              const Color(0xFFFFDD55),
+              const Color(0xFFFFE477),
+              const Color(0xFFFF3920),
+              const Color(0xFFCE48B3)
+            ],
+            stops: [0.0, 0.127, 0.492, 1.0],
           ),
-          titleText: Text(
-            "Get Photo",
-            style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        child: FloatingActionButton.extended(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          onPressed: () {
+            downloadPhoto();
+          },
+          label: FloatingActionBtn(
+            icon: Icon(
+              FeatherIcons.arrowDownCircle,
+              // FeatherIcons.download,
+              color: Colors.white,
+              size: 18,
+            ),
+            titleText: Text(
+              "Get Photo",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),
@@ -118,7 +180,8 @@ class _PhotoSectionState extends State<PhotoSection> {
                     ),
                   ),
                 ],
-              ),
+              ),SizedBox(height: 10),
+              smallBannerAd(),
               SizedBox(height: 30),
               ExpansionTile(
                 collapsedTextColor: Color(0xff1abc9c),
@@ -176,8 +239,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                             child: CachedNetworkImage(
                               imageUrl:
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/Photo01.jpg',
-                              placeholder: (context, url) =>
-                                  progressAwesome(),
+                              placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
                                   Icon(Icons.error),
                             ),
@@ -245,8 +307,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                             child: CachedNetworkImage(
                               imageUrl:
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/Photo02.jpg',
-                              placeholder: (context, url) =>
-                                  progressAwesome(),
+                              placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
                                   Icon(Icons.error),
                             ),
@@ -257,6 +318,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                   ),
                 ],
               ),
+              mediumRectangleAd()
             ],
           ),
         ),
@@ -264,6 +326,38 @@ class _PhotoSectionState extends State<PhotoSection> {
     );
   }
 
+// ads
+  Widget smallBannerAd() {
+    if (isLoaded == true) {
+      return Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
+        width: _ad?.size.width.toDouble(),
+        height: _ad?.size.height.toDouble(),
+        child: AdWidget(
+          ad: _ad!,
+        ),
+      );
+    }
+    return progressAwesome();
+  }
+
+  Widget mediumRectangleAd() {
+    if (isLoadedMR == true) {
+      return Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
+        width: _adMR?.size.width.toDouble(),
+        height: _adMR?.size.height.toDouble(),
+        child: AdWidget(
+          ad: _adMR!,
+        ),
+      );
+    }
+    return progressAwesome();
+  }
+
+// ads
   void downloadPhoto() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {

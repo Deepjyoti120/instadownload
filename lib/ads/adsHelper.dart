@@ -10,11 +10,11 @@ class AdsHelper {
       throw UnsupportedError('Unsupported platform');
     }
   }
-  static String get nativeAdUnitId {
+  static String get mediumRectangleAdUnitId {
     if (Platform.isAndroid) {
-      return 'ca-app-pub-7265627105635702/3455263425';
+      return 'ca-app-pub-7265627105635702/5035760798';
     } else if (Platform.isIOS) {
-      return 'ca-app-pub-7265627105635702/3455263425';
+      return 'ca-app-pub-7265627105635702/5035760798';
     } else {
       throw UnsupportedError('Unsupported platform');
     }

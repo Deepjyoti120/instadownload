@@ -27,9 +27,11 @@ class _ProfileSectionState extends State<ProfileSection> {
   TextEditingController profileName = TextEditingController();
   final String url = "https://www.instagram.com/";
   final String verifyCode = "/?__a=1";
-  InstaGet flutterInsta = InstaGet();
+  final InstaGet flutterInsta = InstaGet();
   BannerAd? _ad;
+  BannerAd? _adMR;
   bool? isLoaded;
+  bool? isLoadedMR;
 
   @override
   void initState() {
@@ -43,9 +45,24 @@ class _ProfileSectionState extends State<ProfileSection> {
         setState(() {
           isLoaded = true;
         });
+      }, onAdFailedToLoad: (context, error) {
+        print('object');
+      }),
+    );
+    _adMR = BannerAd(
+      size: AdSize.mediumRectangle,
+      adUnitId: AdsHelper.mediumRectangleAdUnitId,
+      request: AdRequest(),
+      listener: BannerAdListener(onAdLoaded: (_) {
+        setState(() {
+          isLoadedMR = true;
+        });
+      }, onAdFailedToLoad: (context, error) {
+        print('object');
       }),
     );
     _ad!.load();
+    _adMR!.load();
   }
 
   @override
@@ -141,7 +158,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                 ],
               ),
               SizedBox(height: 10),
-              newMethod(),
+              smallBannerAd(),
               SizedBox(height: 12),
               ExpansionTile(
                 collapsedTextColor: Color(0xff1abc9c),
@@ -260,11 +277,8 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ),
                 ],
               ),
-              // SizedBox(height: 5),
-              // Text(
-              //   'Now click on Get Profile Button',
-              //   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              // ),
+              
+              mediumRectangleAd(),
             ],
           ),
         ),
@@ -272,7 +286,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     );
   }
 
-  Widget newMethod() {
+  Widget smallBannerAd() {
     if (isLoaded == true) {
       return Container(
         decoration:
@@ -281,6 +295,20 @@ class _ProfileSectionState extends State<ProfileSection> {
         height: _ad?.size.height.toDouble(),
         child: AdWidget(
           ad: _ad!,
+        ),
+      );
+    }
+    return progressAwesome();
+  }
+  Widget mediumRectangleAd() {
+    if (isLoadedMR == true) {
+      return Container(
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
+        width: _adMR?.size.width.toDouble(),
+        height: _adMR?.size.height.toDouble(),
+        child: AdWidget(
+          ad: _adMR!,
         ),
       );
     }
