@@ -3,6 +3,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:getprofile/ads/adsHelper.dart';
 import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/CenterFBtn.dart';
 import 'package:getprofile/screens/widgets/progressAwesome.dart';
@@ -311,7 +312,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                 ],
               ),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/5035760798',
+                unitId: AdsHelper.mediumRectangleAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
