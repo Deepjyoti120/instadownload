@@ -142,7 +142,7 @@ class _VideoSectionState extends State<VideoSection> {
               ),
               SizedBox(height: 10),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/5035760798',
+                unitId: AdsHelper.bannerAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
@@ -289,7 +289,7 @@ class _VideoSectionState extends State<VideoSection> {
                 ],
               ),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/5035760798',
+                unitId: AdsHelper.rectangleAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,

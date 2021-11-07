@@ -165,7 +165,7 @@ class _PhotoSectionState extends State<PhotoSection> {
               ),
               SizedBox(height: 10),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/5035760798',
+                unitId: AdsHelper.bannerAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
@@ -312,7 +312,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                 ],
               ),
               BannerAd(
-                unitId: AdsHelper.mediumRectangleAdUnitId,
+                unitId: AdsHelper.rectangleAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
