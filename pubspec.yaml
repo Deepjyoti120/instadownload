@@ -23,7 +23,7 @@ dependencies:
   flutter_feather_icons: ^2.0.0+1
   flutter_bloc: ^7.3.1
   hydrated_bloc: ^7.1.0
-  google_fonts: ^2.1.0
+  google_fonts: ^2.1.0 
   introduction_screen: ^2.1.0
   cached_network_image: ^3.1.0
   native_admob_flutter: ^1.5.0

@@ -38,9 +38,11 @@ class _MainInstaState extends State<MainInsta> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: TextGradient(text: "Getprofile",),
+        title: TextGradient(
+          text: "Getprofile",
+        ),
         // title: Text(
-        //   
+        //
         //   style: GoogleFonts.oleoScriptSwashCaps(
         //       fontSize: 26, color: Colors.black),
         // ),
@@ -101,5 +103,3 @@ class _MainInstaState extends State<MainInsta> {
     );
   }
 }
-
-
