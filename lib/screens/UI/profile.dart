@@ -4,13 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:instaget/ads/adsHelper.dart';
-import 'package:instaget/api/instaGet.dart';
-import 'package:instaget/screens/widgets/CenterFBtn.dart';
-import 'package:instaget/screens/widgets/progressAwesome.dart';
-import 'package:instaget/screens/widgets/searchField.dart';
-import 'package:instaget/screens/widgets/tipsWidget.dart';
+import 'package:getprofile/ads/adsHelper.dart';
+import 'package:getprofile/api/api.dart';
+import 'package:getprofile/screens/widgets/CenterFBtn.dart';
+import 'package:getprofile/screens/widgets/progressAwesome.dart';
+import 'package:getprofile/screens/widgets/searchField.dart';
+import 'package:getprofile/screens/widgets/tipsWidget.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
@@ -27,49 +27,8 @@ class _ProfileSectionState extends State<ProfileSection> {
   TextEditingController profileName = TextEditingController();
   final String url = "https://www.instagram.com/";
   final String verifyCode = "/?__a=1";
-  final InstaGet flutterInsta = InstaGet();
-  BannerAd? _ad;
-  BannerAd? _adMR;
-  bool? isLoaded;
-  bool? isLoadedMR;
-
-  @override
-  void initState() {
-    super.initState();
-    _ad = BannerAd(
-      size: AdSize.fullBanner,
-      // size: AdSize.mediumRectangle,
-      adUnitId: AdsHelper.bannerAdUnitId,
-      request: AdRequest(),
-      listener: BannerAdListener(onAdLoaded: (_) {
-        setState(() {
-          isLoaded = true;
-        });
-      }, onAdFailedToLoad: (context, error) {
-        print('object');
-      }),
-    );
-    _adMR = BannerAd(
-      size: AdSize.mediumRectangle,
-      adUnitId: AdsHelper.mediumRectangleAdUnitId,
-      request: AdRequest(),
-      listener: BannerAdListener(onAdLoaded: (_) {
-        setState(() {
-          isLoadedMR = true;
-        });
-      }, onAdFailedToLoad: (context, error) {
-        print('object');
-      }),
-    );
-    _ad!.load();
-    _adMR!.load();
-  }
-
-  @override
-  void dispose() {
-    _ad!.dispose();
-    super.dispose();
-  }
+  final getprofile flutterInsta = getprofile();
+  Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -78,15 +37,15 @@ class _ProfileSectionState extends State<ProfileSection> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(146.0),
           gradient: RadialGradient(
-            center: Alignment(-0.61, 1.18),
+            center: Alignment(0.54, 1.19),
             radius: 0.953,
             colors: [
               const Color(0xFFFFDD55),
               const Color(0xFFFFE477),
-              const Color(0xFFFF3920),
-              const Color(0xFFCE48B3)
+              const Color(0xFFFF8D7E),
+              const Color(0xFFE825C1)
             ],
             stops: [0.0, 0.127, 0.492, 1.0],
           ),
@@ -158,8 +117,18 @@ class _ProfileSectionState extends State<ProfileSection> {
                 ],
               ),
               SizedBox(height: 10),
-              smallBannerAd(),
-              SizedBox(height: 12),
+              BannerAd(
+                unitId: 'ca-app-pub-7265627105635702/6722007860',
+                builder: (context, child) {
+                  return Container(
+                    child: child,
+                  );
+                },
+                loading: Center(child: progressAwesome()),
+                error: Text('error'),
+                size: BannerSize.ADAPTIVE,
+              ),
+              SizedBox(height: 4),
               ExpansionTile(
                 collapsedTextColor: Color(0xff1abc9c),
                 iconColor: Colors.blue,
@@ -277,8 +246,17 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ),
                 ],
               ),
-              
-              mediumRectangleAd(),
+              BannerAd(
+                unitId: 'ca-app-pub-7265627105635702/9156599510',
+                builder: (context, child) {
+                  return Container(
+                    child: child,
+                  );
+                },
+                loading: Center(child: progressAwesome()),
+                error: Text('error'),
+                size: BannerSize.MEDIUM_RECTANGLE,
+              ),
             ],
           ),
         ),
@@ -286,41 +264,12 @@ class _ProfileSectionState extends State<ProfileSection> {
     );
   }
 
-  Widget smallBannerAd() {
-    if (isLoaded == true) {
-      return Container(
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
-        width: _ad?.size.width.toDouble(),
-        height: _ad?.size.height.toDouble(),
-        child: AdWidget(
-          ad: _ad!,
-        ),
-      );
-    }
-    return progressAwesome();
-  }
-  Widget mediumRectangleAd() {
-    if (isLoadedMR == true) {
-      return Container(
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(16))),
-        width: _adMR?.size.width.toDouble(),
-        height: _adMR?.size.height.toDouble(),
-        child: AdWidget(
-          ad: _adMR!,
-        ),
-      );
-    }
-    return progressAwesome();
-  }
-
   Future downloadProfile() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
         var getvideourl =
-            await flutterInsta.getProfileDetails(profileName.text);
+            await flutterInsta.getprofileDetails(profileName.text);
         String s = getvideourl;
         var uri = Uri.parse(s);
         String ws = uri.pathSegments.last;
@@ -340,12 +289,12 @@ class _ProfileSectionState extends State<ProfileSection> {
     }
   }
 
-  Future reStartGetProfile() async {
+  Future reStartgetprofile() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
         var getvideourl =
-            await flutterInsta.getProfileDetails(profileName.text);
+            await flutterInsta.getprofileDetails(profileName.text);
         String s = getvideourl;
         var uri = Uri.parse(s);
         String ws = uri.pathSegments.last;
@@ -357,7 +306,7 @@ class _ProfileSectionState extends State<ProfileSection> {
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
       } catch (e) {
-        return reStartGetProfile();
+        return reStartgetprofile();
       }
     } else {
       print("Permission deined");
@@ -405,6 +354,6 @@ class _ProfileSectionState extends State<ProfileSection> {
         behavior: SnackBarBehavior.floating,
       ),
     );
-    return reStartGetProfile();
+    return reStartgetprofile();
   }
 }

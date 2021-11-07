@@ -2,10 +2,13 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:getprofile/screens/widgets/gradient/textGradient.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:instaget/screens/UI/photo.dart';
-import 'package:instaget/screens/UI/profile.dart';
-import 'package:instaget/screens/UI/video.dart';
+
+import 'package:getprofile/screens/UI/photo.dart';
+import 'package:getprofile/screens/UI/profile.dart';
+import 'package:getprofile/screens/UI/video.dart';
+import 'package:getprofile/screens/widgets/gradient/gradientStyle.dart';
 
 class MainInsta extends StatefulWidget {
   @override
@@ -35,11 +38,12 @@ class _MainInstaState extends State<MainInsta> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: Text(
-          "Instaexport",
-          style: GoogleFonts.oleoScriptSwashCaps(
-              fontSize: 26, color: Colors.black),
-        ),
+        title: TextGradient(text: "Getprofile",),
+        // title: Text(
+        //   
+        //   style: GoogleFonts.oleoScriptSwashCaps(
+        //       fontSize: 26, color: Colors.black),
+        // ),
       ),
       body: SizedBox.expand(
         child: PageView(
@@ -97,3 +101,5 @@ class _MainInstaState extends State<MainInsta> {
     );
   }
 }
+
+

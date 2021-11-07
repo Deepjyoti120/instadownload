@@ -19,13 +19,13 @@ class TipsWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         gradient: RadialGradient(
-          center: Alignment(-0.61, 1.18),
+          center: Alignment(0.54, 1.19),
           radius: 0.953,
           colors: [
             const Color(0xFFFFDD55),
             const Color(0xFFFFE477),
-            const Color(0xFFFF3920),
-            const Color(0xFFCE48B3)
+            const Color(0xFFFF8D7E),
+            const Color(0xFFE825C1)
           ],
           stops: [0.0, 0.127, 0.492, 1.0],
         ),

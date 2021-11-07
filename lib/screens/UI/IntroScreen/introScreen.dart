@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instaget/cubit/introscreen_cubit.dart';
-import 'package:instaget/screens/UI/homeScreen.dart';
+import 'package:flutter_svg/flutter_svg.dart'; 
+import 'package:getprofile/cubit/introscreen_cubit.dart';
+import 'package:getprofile/screens/UI/homeScreen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroInsta extends StatefulWidget {
@@ -22,7 +23,7 @@ class _IntroInstaState extends State<IntroInsta> {
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('$assetName', width: width);
+    return SvgPicture.asset('$assetName', width: width);
   }
 
   @override
@@ -46,30 +47,29 @@ class _IntroInstaState extends State<IntroInsta> {
       pages: [
         PageViewModel(
           title: "Get profile",
-          body: "Get your Instagram Profile Pic using Instaexport",
+          body: "Get your Instagram Profile Pic using GetProfile",
           image:
-              SafeArea(child: _buildImage('assets/images/introProfile1.jpg')),
+              SafeArea(child: _buildImage('assets/images/introProfile1.svg')),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Get photos",
           body:
-              "Extract Instagram photos and Share where you want using Instaexport",
+              "Extract Instagram photos and Share where you want using GetProfile",
           image: SafeArea(
               child: Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: _buildImage('assets/images/postImg.png'),
+            child: _buildImage('assets/images/photo.svg'),
           )),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Get videos",
           body:
-              "Extract Instagram Videos, Reels and Share them to  where you want using Instaexport",
+              "Extract Instagram Videos, Reels and Share them to  where you want using GetProfile",
           image: Padding(
             padding: const EdgeInsets.fromLTRB(50, 50, 50, 0),
-            child: SafeArea(
-                child: _buildImage('assets/images/BrightButterfly.gif')),
+            child: SafeArea(child: _buildImage('assets/images/video.svg')),
           ),
           decoration: pageDecoration,
         ),

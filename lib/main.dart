@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:flutter_downloader/flutter_downloader.dart'; 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:instaget/cubit/introscreen_cubit.dart';
-import 'package:instaget/screens/UI/IntroScreen/introScreen.dart';
-import 'package:instaget/screens/UI/homeScreen.dart';
+import 'package:getprofile/cubit/introscreen_cubit.dart';
+import 'package:getprofile/screens/UI/IntroScreen/introScreen.dart';
+import 'package:getprofile/screens/UI/homeScreen.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(debug: true);
   FlutterDownloader.registerCallback(FlutterDownload.callback);
-  MobileAds.instance.initialize();
+  await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
   runApp(MyApp());
@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
         //     Theme.of(context).textTheme,
         //   ),
         // ),
-        title: 'Insta Export',
-        // home: MainInsta(),
+        title: 'Getprofile',
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
             if (state.introScreenValue == false) {

@@ -4,17 +4,17 @@ import 'package:http/http.dart' as http;
 
 // Customize API here
 // Customize API here
-class InstaGet {
+class getprofile {
   String url = "http://www.instagram.com/";
 
   //get profile details
-  Future<String> getProfileDetails(String username) async {
+  Future<String> getprofileDetails(String username) async {
     var res = await http.get(Uri.parse(url + username + "/?__a=1"));
     var data = json.decode(res.body);
     var graphql = data['graphql'];
     var user = graphql['user'];
-    var getProfile = user['profile_pic_url_hd'];
-    return getProfile;
+    var getprofile = user['profile_pic_url_hd'];
+    return getprofile;
   }
 
   //Get reels/posts photos

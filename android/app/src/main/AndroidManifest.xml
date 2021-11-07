@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
    <application
-        android:label="Insta Export"
+        android:label="GetProfile"
         android:icon="@mipmap/ic_launcher"> 
         <provider
     android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
@@ -52,6 +52,6 @@
             android:value="2" />
         <meta-data
         android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="ca-app-pub-7265627105635702~3879958774" />
+        android:value="ca-app-pub-7265627105635702~8848643606" />
     </application>
 </manifest>
