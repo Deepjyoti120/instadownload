@@ -1,5 +1,5 @@
 import 'dart:io';
-// Please replace app unit id : 
+// Please replace app unit id : : 
 class AdsHelper {
   static String get bannerAdUnitId {
     if (Platform.isAndroid) {
