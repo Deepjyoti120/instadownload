@@ -118,7 +118,7 @@ class _ProfileSectionState extends State<ProfileSection> {
               ),
               SizedBox(height: 10),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/6722007860',
+                unitId: AdsHelper.bannerAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
@@ -247,7 +247,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                 ],
               ),
               BannerAd(
-                unitId: 'ca-app-pub-7265627105635702/9156599510',
+                unitId: AdsHelper.rectangleAdUnitId,
                 builder: (context, child) {
                   return Container(
                     child: child,
