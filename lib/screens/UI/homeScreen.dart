@@ -3,12 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/screens/widgets/gradient/textGradient.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
-import 'package:getprofile/screens/widgets/gradient/gradientStyle.dart';
 
 class MainInsta extends StatefulWidget {
   @override

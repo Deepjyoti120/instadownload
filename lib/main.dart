@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
       create: (context) => IntroscreenCubit(),
       child: MaterialApp(
         // theme: ThemeData(
-        //   textTheme: GoogleFonts.ptSansTextTheme(
-        //     Theme.of(context).textTheme,
+        //   textTheme: GoogleFonts.nunitoTextTheme(
+        //     Theme.of(context).textTheme, 
         //   ),
         // ),
         title: 'Getprofile',

@@ -3,9 +3,9 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:getprofile/ads/adsHelper.dart';
 import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/CenterFBtn.dart';
+import 'package:getprofile/screens/widgets/ads/adsSection.dart';
 import 'package:getprofile/screens/widgets/progressAwesome.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -24,7 +24,6 @@ class _PhotoSectionState extends State<PhotoSection> {
   final TextEditingController pastePhotoLink = TextEditingController();
   getprofile flutterInsta = getprofile();
   final _controller = NativeAdController();
-  Widget? child;
   @override
   void initState() {
     super.initState();
@@ -164,17 +163,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                 ],
               ),
               SizedBox(height: 10),
-              BannerAd(
-                unitId: AdsHelper.bannerAdUnitId,
-                builder: (context, child) {
-                  return Container(
-                    child: child,
-                  );
-                },
-                loading: Center(child: progressAwesome()),
-                error: Text('error'),
-                size: BannerSize.ADAPTIVE,
-              ),
+              BannerSmall(), 
               SizedBox(height: 4),
               ExpansionTile(
                 collapsedTextColor: Color(0xff1abc9c),
@@ -310,18 +299,8 @@ class _PhotoSectionState extends State<PhotoSection> {
                     ),
                   ),
                 ],
-              ),
-              BannerAd(
-                unitId: AdsHelper.rectangleAdUnitId,
-                builder: (context, child) {
-                  return Container(
-                    child: child,
-                  );
-                },
-                loading: Center(child: progressAwesome()),
-                error: Text('error'),
-                size: BannerSize.MEDIUM_RECTANGLE,
-              ),
+              ), 
+              BannerRectangle(),
             ],
           ),
         ),
