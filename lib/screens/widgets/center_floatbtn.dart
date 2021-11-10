@@ -16,7 +16,7 @@ class FloatingActionBtn extends StatelessWidget {
       children: [
         icon,
         Container(
-          margin: EdgeInsets.only(left: 4),
+          margin:const EdgeInsets.only(left: 4),
           child: titleText,
         ),
       ],

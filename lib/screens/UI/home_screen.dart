@@ -2,12 +2,14 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:getprofile/screens/widgets/gradient/textGradient.dart';
+import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
 
 class MainInsta extends StatefulWidget {
+  const MainInsta({Key? key}) : super(key: key);
+
   @override
   _MainInstaState createState() => _MainInstaState();
 }
@@ -35,9 +37,7 @@ class _MainInstaState extends State<MainInsta> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: TextGradient(
-          text: "Getprofile",
-        ),
+        title: const TextGradient(text:"Getprofile"),
         // title: Text(
         //
         //   style: GoogleFonts.oleoScriptSwashCaps(
@@ -50,7 +50,7 @@ class _MainInstaState extends State<MainInsta> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: [
+          children: const [
             ProfileSection(),
             PhotoSection(),
             VideoSection(),
@@ -67,32 +67,32 @@ class _MainInstaState extends State<MainInsta> {
         items: [
           BottomNavyBarItem(
             activeColor: _currentIndex == 0 ? Colors.red : Colors.blue,
-            icon: Padding(
-              padding: const EdgeInsets.only(left: 6),
+            icon:const Padding(
+              padding:   EdgeInsets.only(left: 6),
               child: Icon(FeatherIcons.userCheck),
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(right: 4),
+            title:const Padding(
+              padding:   EdgeInsets.only(right: 4),
               child: Text('Profile'),
             ),
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
             activeColor: _currentIndex == 1 ? Colors.red : Colors.blue,
-            title: Text('Photo'),
+            title: const Text('Photo'),
             // activeColor: Colors.pink,
             textAlign: TextAlign.center,
-            icon: Padding(
-                padding: const EdgeInsets.only(left: 6),
+            icon:const Padding(
+                padding:   EdgeInsets.only(left: 6),
                 child: Icon(FeatherIcons.camera)),
           ),
           BottomNavyBarItem(
             activeColor: _currentIndex == 2 ? Colors.red : Colors.blue,
-            title: Text('Video'),
+            title:const Text('Video'),
             // activeColor: Colors.pink,
             textAlign: TextAlign.center,
-            icon: Padding(
-                padding: const EdgeInsets.only(left: 6),
+            icon:const Padding(
+                padding:   EdgeInsets.only(left: 6),
                 child: Icon(FeatherIcons.film)),
           ),
         ],

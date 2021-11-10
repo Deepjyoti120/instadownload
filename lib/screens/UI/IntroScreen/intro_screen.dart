@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart'; 
 import 'package:getprofile/cubit/introscreen_cubit.dart';
-import 'package:getprofile/screens/UI/homeScreen.dart';
+import 'package:getprofile/screens/UI/home_screen.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroInsta extends StatefulWidget {
+  const IntroInsta({Key? key}) : super(key: key);
+
   @override
   _IntroInstaState createState() => _IntroInstaState();
 }
@@ -18,18 +20,18 @@ class _IntroInstaState extends State<IntroInsta> {
   void _onIntroEnd(context) {
     BlocProvider.of<IntroscreenCubit>(context).introScreenValueDone();
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => MainInsta()),
+      MaterialPageRoute(builder: (_) =>const MainInsta()),
     );
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return SvgPicture.asset('$assetName', width: width);
+    return SvgPicture.asset(assetName, width: width);
   }
 
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 16.0);
-    const pageDecoration = const PageDecoration(
+    const pageDecoration =   PageDecoration(
       titleTextStyle: TextStyle(
         fontSize: 26,
         color: Colors.black,

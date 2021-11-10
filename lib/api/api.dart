@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 // Customize API here
 // Customize API here
-class getprofile {
+class Getprofile {
   String url = "http://www.instagram.com/";
 
   //get profile details
@@ -21,8 +21,7 @@ class getprofile {
   Future<String> getPostPhoto(String link) async {
     var linkSplit = link.replaceAll(" ", "").split("/");
     var downloadURL = await http.get(Uri.parse(
-        '${linkSplit[0]}//${linkSplit[2]}/${linkSplit[3]}/${linkSplit[4]}' +
-            "/?__a=1"));
+        '${linkSplit[0]}//${linkSplit[2]}/${linkSplit[3]}/${linkSplit[4]}' "/?__a=1"));
     var data = json.decode(downloadURL.body);
     var graphql = data['graphql'];
     var shortcodeMedia = graphql['shortcode_media'];
@@ -34,7 +33,7 @@ class getprofile {
   Future<String> getInstaVideo(String link) async {
     var linkSplit = link.replaceAll(" ", "").split("/");
     var downloadURL = await http.get(Uri.parse(
-        '${linkSplit[0]}//${linkSplit[2]}/${linkSplit[3]}/${linkSplit[4]}' +
+        '${linkSplit[0]}//${linkSplit[2]}/${linkSplit[3]}/${linkSplit[4]}'
             "/?__a=1"));
     var data = json.decode(downloadURL.body);
     var graphql = data['graphql'];

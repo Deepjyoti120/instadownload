@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_downloader/flutter_downloader.dart'; 
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:getprofile/cubit/introscreen_cubit.dart';
-import 'package:getprofile/screens/UI/IntroScreen/introScreen.dart';
-import 'package:getprofile/screens/UI/homeScreen.dart';
+import 'package:getprofile/screens/UI/IntroScreen/intro_screen.dart';
+import 'package:getprofile/screens/UI/home_screen.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -15,7 +15,7 @@ void main() async {
   await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class FlutterDownload {
@@ -23,6 +23,7 @@ class FlutterDownload {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -30,16 +31,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         // theme: ThemeData(
         //   textTheme: GoogleFonts.nunitoTextTheme(
-        //     Theme.of(context).textTheme, 
+        //     Theme.of(context).textTheme,
         //   ),
         // ),
         title: 'Getprofile',
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
             if (state.introScreenValue == false) {
-              return IntroInsta();
+              return const IntroInsta();
             }
-            return MainInsta();
+            return const MainInsta();
           },
         ),
       ),

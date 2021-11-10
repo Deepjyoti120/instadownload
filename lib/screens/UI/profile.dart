@@ -3,13 +3,14 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart'; 
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/api/api.dart';
-import 'package:getprofile/screens/widgets/CenterFBtn.dart';
-import 'package:getprofile/screens/widgets/ads/adsSection.dart';
-import 'package:getprofile/screens/widgets/progressAwesome.dart';
-import 'package:getprofile/screens/widgets/searchField.dart';
-import 'package:getprofile/screens/widgets/tipsWidget.dart'; 
+import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
+import 'package:getprofile/screens/widgets/center_floatbtn.dart';
+import 'package:getprofile/screens/widgets/ads/small_banner.dart';
+import 'package:getprofile/screens/widgets/progress_awesome.dart';
+import 'package:getprofile/screens/widgets/search_field.dart';
+import 'package:getprofile/screens/widgets/tips_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
@@ -26,7 +27,7 @@ class _ProfileSectionState extends State<ProfileSection> {
   TextEditingController profileName = TextEditingController();
   final String url = "https://www.instagram.com/";
   final String verifyCode = "/?__a=1";
-  final getprofile flutterInsta = getprofile();
+  final Getprofile flutterInsta = Getprofile();
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,14 @@ class _ProfileSectionState extends State<ProfileSection> {
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(146.0),
-          gradient: RadialGradient(
+          gradient: const RadialGradient(
             center: Alignment(0.54, 1.19),
             radius: 0.953,
             colors: [
-              const Color(0xFFFFDD55),
-              const Color(0xFFFFE477),
-              const Color(0xFFFF8D7E),
-              const Color(0xFFE825C1)
+              Color(0xFFFFDD55),
+              Color(0xFFFFE477),
+              Color(0xFFFF8D7E),
+              Color(0xFFE825C1)
             ],
             stops: [0.0, 0.127, 0.492, 1.0],
           ),
@@ -54,7 +55,7 @@ class _ProfileSectionState extends State<ProfileSection> {
           onPressed: () async {
             await downloadProfile();
           },
-          label: FloatingActionBtn(
+          label: const FloatingActionBtn(
             icon: Icon(
               FeatherIcons.arrowDownCircle,
               color: Colors.white,
@@ -80,7 +81,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                 labelText: 'Profile username',
                 pasteValue: profileName,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -93,44 +94,44 @@ class _ProfileSectionState extends State<ProfileSection> {
                         });
                       });
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Paste'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
                     onPressed: () async {
                       await canLaunch(url + profileName.text + verifyCode)
                           ? launch(url + profileName.text)
-                          : print("Can not launch");
+                          : debugPrint("Can not launch");
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Verify'),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              BannerSmall(),
-              SizedBox(height: 4),
+              const SizedBox(height: 10),
+              const BannerSmall(),
+              const SizedBox(height: 4),
               ExpansionTile(
-                collapsedTextColor: Color(0xff1abc9c),
+                collapsedTextColor:const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor: Color(0xff16a085),
+                textColor:const Color(0xff16a085),
                 title: Row(
                   children: [
-                    Icon(
+                   const Icon(
                       FeatherIcons.codesandbox,
                       size: 18,
                       color: Color(0xff1abc9c),
                     ),
-                    SizedBox(width: 6),
+                 const   SizedBox(width: 6),
                     Row(
-                      children: [
+                      children:const [
                         Text("Pro Tips-",
                             style: TextStyle(
                               fontSize: 16,
@@ -174,16 +175,16 @@ class _ProfileSectionState extends State<ProfileSection> {
                     // ),
                   ],
                 ),
-                children: [
+                children:const [
                   TipsWidget(),
                 ],
               ),
               ExpansionTile(
-                collapsedTextColor: Color(0xff1abc9c),
+                collapsedTextColor:const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor: Color(0xff16a085),
+                textColor:const Color(0xff16a085),
                 title: Row(
-                  children: [
+                  children:const [
                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
@@ -200,7 +201,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ],
                 ),
                 children: [
-                  Text(
+                 const Text(
                     'Please Search Profile username Only',
                     style: TextStyle(
                       fontSize: 14,
@@ -208,19 +209,19 @@ class _ProfileSectionState extends State<ProfileSection> {
                       color: Color(0xff34495e),
                     ),
                   ),
-                  SizedBox(height: 2),
-                  Text(
+                const  SizedBox(height: 2),
+                 const Text(
                     'eg. appdesignx',
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                         color: Color(0xffff4d4d)),
                   ),
-                  Text(
+                const  Text(
                     'Then type profile username and get your Profile',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                const  SizedBox(
                     height: 4,
                   ),
                   Padding(
@@ -229,12 +230,12 @@ class _ProfileSectionState extends State<ProfileSection> {
                       imageUrl:
                           'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/profile.jpg',
                       placeholder: (context, url) => progressAwesome(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      errorWidget: (context, url, error) =>const Icon(Icons.error),
                     ),
                   ),
                 ],
               ),
-              BannerRectangle(),
+           const   BannerRectangle(),
             ],
           ),
         ),
@@ -252,7 +253,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         var uri = Uri.parse(s);
         String ws = uri.pathSegments.last;
         await FlutterDownloader.enqueue(
-          url: '$getvideourl',
+          url: getvideourl,
           fileName: ws,
           savedDir: '/sdcard/Download/',
           showNotification: true,
@@ -263,7 +264,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         return showSnackbarErrorProfile();
       }
     } else {
-      print("Permission deined");
+      debugPrint("Permission deined");
     }
   }
 
@@ -277,7 +278,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         var uri = Uri.parse(s);
         String ws = uri.pathSegments.last;
         await FlutterDownloader.enqueue(
-          url: '$getvideourl',
+          url: getvideourl,
           fileName: ws,
           savedDir: '/sdcard/Download/',
           showNotification: true,
@@ -287,7 +288,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         return reStartgetprofile();
       }
     } else {
-      print("Permission deined");
+      debugPrint("Permission deined");
     }
   }
 
@@ -295,8 +296,8 @@ class _ProfileSectionState extends State<ProfileSection> {
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 5),
-        content: Text(
+        duration: const Duration(seconds: 5),
+        content:const Text(
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -316,8 +317,8 @@ class _ProfileSectionState extends State<ProfileSection> {
     // showSnackbarError(String s) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 2),
-        content: Text(
+        duration:const Duration(seconds: 2),
+        content:const Text(
           // "Instagram Profile API is show! Please try again or wait... it will automaticall saved to your Galley once API is Active. While your profile Downloading Please try Photo and Videos .. Thank you .",
           "Instagram Profile API is slow! Please try again later",
           // s,
@@ -335,4 +336,3 @@ class _ProfileSectionState extends State<ProfileSection> {
     return reStartgetprofile();
   }
 }
-

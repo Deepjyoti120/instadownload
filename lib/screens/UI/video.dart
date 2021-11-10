@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:getprofile/api/api.dart'; 
-import 'package:getprofile/screens/widgets/CenterFBtn.dart';
-import 'package:getprofile/screens/widgets/ads/adsSection.dart';
-import 'package:getprofile/screens/widgets/progressAwesome.dart'; 
+import 'package:getprofile/api/api.dart';
+import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart'; 
+import 'package:getprofile/screens/widgets/center_floatbtn.dart';
+import 'package:getprofile/screens/widgets/ads/small_banner.dart';
+import 'package:getprofile/screens/widgets/progress_awesome.dart'; 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,7 +23,7 @@ class VideoSection extends StatefulWidget {
 
 class _VideoSectionState extends State<VideoSection> {
   final TextEditingController videoPhotoLink = TextEditingController();
-  getprofile flutterInsta = getprofile();
+  Getprofile flutterInsta = Getprofile();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,14 +31,14 @@ class _VideoSectionState extends State<VideoSection> {
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(146.0),
-          gradient: RadialGradient(
+          gradient:const RadialGradient(
             center: Alignment(0.54, 1.19),
             radius: 0.953,
             colors: [
-              const Color(0xFFFFDD55),
-              const Color(0xFFFFE477),
-              const Color(0xFFFF8D7E),
-              const Color(0xFFE825C1)
+                Color(0xFFFFDD55),
+                Color(0xFFFFE477),
+                Color(0xFFFF8D7E),
+                Color(0xFFE825C1)
             ],
             stops: [0.0, 0.127, 0.492, 1.0],
           ),
@@ -48,7 +49,7 @@ class _VideoSectionState extends State<VideoSection> {
           onPressed: () {
             downloadVideo();
           },
-          label: FloatingActionBtn(
+          label:const FloatingActionBtn(
             icon: Icon(
               FeatherIcons.arrowDownCircle,
               // FeatherIcons.download,
@@ -77,7 +78,7 @@ class _VideoSectionState extends State<VideoSection> {
                 // style: TextStyle(
                 //   color: Colors.blue,
                 // ),
-                decoration: InputDecoration(
+                decoration:const InputDecoration(
                   labelText: 'Paste Video link',
                   filled: true,
                   fillColor: Colors.white,
@@ -88,14 +89,14 @@ class _VideoSectionState extends State<VideoSection> {
                     color: Colors.black,
                     size: 18,
                   ),
-                  focusedBorder: const OutlineInputBorder(
+                  focusedBorder:   OutlineInputBorder(
                     // 0xFF
                     borderSide:
-                        const BorderSide(color: Colors.blue, width: 2.0),
+                          BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder:   OutlineInputBorder(
                     borderSide:
-                        const BorderSide(color: Colors.blue, width: 1.0),
+                          BorderSide(color: Colors.blue, width: 1.0),
                     // borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   // border: OutlineInputBorder(
@@ -104,7 +105,7 @@ class _VideoSectionState extends State<VideoSection> {
                   // ),
                 ),
               ),
-              SizedBox(height: 10),
+const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -117,36 +118,36 @@ class _VideoSectionState extends State<VideoSection> {
                         });
                       });
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: const Padding(
+                      padding:   EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Paste'),
                     ),
                   ),
-                  SizedBox(
+                const  SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
                     onPressed: () async {
                       await canLaunch(videoPhotoLink.text)
                           ? launch(videoPhotoLink.text)
-                          : print("Can not launch");
+                          : debugPrint("Can not launch");
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child:const Padding(
+                      padding:   EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Verify'),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              BannerSmall(), 
-              SizedBox(height: 4),
+             const SizedBox(height: 10),
+             const BannerSmall(), 
+             const SizedBox(height: 4),
               ExpansionTile(
-                collapsedTextColor: Color(0xff1abc9c),
+                collapsedTextColor:const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor: Color(0xff16a085),
+                textColor:const Color(0xff16a085),
                 title: Row(
-                  children: [
+                  children:const [
                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
@@ -168,7 +169,7 @@ class _VideoSectionState extends State<VideoSection> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Text(
+                       const   Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -176,7 +177,7 @@ class _VideoSectionState extends State<VideoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                          SizedBox(height: 2),
+                         const SizedBox(height: 2),
                           // Text(
                           //   'eg. deepjyoti_sam',
                           //   style: TextStyle(
@@ -189,7 +190,7 @@ class _VideoSectionState extends State<VideoSection> {
                           //   style: TextStyle(
                           //       fontSize: 12, fontWeight: FontWeight.bold),
                           // ),
-                          SizedBox(
+                         const SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -199,7 +200,7 @@ class _VideoSectionState extends State<VideoSection> {
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/copylinkReels01.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                                 const Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -208,20 +209,20 @@ class _VideoSectionState extends State<VideoSection> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+             const SizedBox(height: 10),
               ExpansionTile(
-                collapsedTextColor: Color(0xff1abc9c),
+                collapsedTextColor:const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor: Color(0xff16a085),
+                textColor:const Color(0xff16a085),
                 title: Row(
-                  children: [
-                    Icon(
+                  children:const [
+                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
                       color: Color(0xff1abc9c),
                     ),
-                    SizedBox(width: 6),
-                    Text(
+                     SizedBox(width: 6),
+                     Text(
                       'How to get Reels/Videos link',
                       style: TextStyle(
                         fontSize: 14.0,
@@ -236,7 +237,7 @@ class _VideoSectionState extends State<VideoSection> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Text(
+                        const  Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -244,20 +245,20 @@ class _VideoSectionState extends State<VideoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                          SizedBox(height: 2),
-                          Text(
+                        const  SizedBox(height: 2),
+                        const  Text(
                             'eg. see on Example photo and click copy link tab',
                             style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xffff4d4d)),
                           ),
-                          Text(
+                        const  Text(
                             'Then paste link by clicking paste button',
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                        const  SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -267,7 +268,7 @@ class _VideoSectionState extends State<VideoSection> {
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/copylinkReels02.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                               const   Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -276,7 +277,7 @@ class _VideoSectionState extends State<VideoSection> {
                   ),
                 ],
               ), 
-              BannerRectangle(),
+            const  BannerRectangle(),
             ],
           ),
         ),
@@ -293,7 +294,7 @@ class _VideoSectionState extends State<VideoSection> {
         var uri = Uri.parse(s);
         String ws = uri.pathSegments.last;
         await FlutterDownloader.enqueue(
-          url: '$myvideourl',
+          url: myvideourl,
           fileName: ws,
           savedDir: '/sdcard/Download/',
           showNotification: true,
@@ -303,15 +304,15 @@ class _VideoSectionState extends State<VideoSection> {
         return showSnackbarErrorVideo();
       }
     } else {
-      print("Permission deined");
+      debugPrint("Permission deined");
     }
   }
 
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 5),
-        content: Text(
+        duration:const Duration(seconds: 5),
+        content:const Text(
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -324,8 +325,8 @@ class _VideoSectionState extends State<VideoSection> {
   void showSnackbarErrorVideo() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 2),
-        content: Text(
+        duration:const Duration(seconds: 2),
+        content:const Text(
           "Please verify link and try again",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
