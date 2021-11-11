@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(debug: true);
+  await FlutterDownloader.initialize();
   FlutterDownloader.registerCallback(FlutterDownload.callback);
   await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
@@ -38,7 +38,9 @@ class MyApp extends StatelessWidget {
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
             if (state.introScreenValue == false) {
-              return const IntroInsta();
+              const IntroInsta();
+            } else {
+              const MainInsta();
             }
             return const MainInsta();
           },

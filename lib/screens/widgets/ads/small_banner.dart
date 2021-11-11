@@ -18,7 +18,7 @@ class BannerSmall extends StatelessWidget {
         );
       },
       loading: Center(child: progressAwesome()),
-      error: const Text('error'),
+      error: const Text(' '),
       size: BannerSize.ADAPTIVE,
     );
   }
