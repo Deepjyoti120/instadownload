@@ -5,7 +5,6 @@ import 'package:getprofile/screens/UI/home_screen_new.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:getprofile/cubit/introscreen_cubit.dart';
 import 'package:getprofile/screens/UI/IntroScreen/intro_screen.dart';
-import 'package:getprofile/screens/UI/home_screen.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -41,9 +40,8 @@ class MyApp extends StatelessWidget {
             if (state.introScreenValue == false) {
               const IntroInsta();
             } else {
-              const MainInsta();
+              const NewHomePage();
             }
-            // return const MainInsta();
             return const NewHomePage();
           },
         ),

@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart'; 
-import 'package:getprofile/cubit/introscreen_cubit.dart';
-import 'package:getprofile/screens/UI/home_screen.dart';
+import 'package:getprofile/cubit/introscreen_cubit.dart'; 
+import 'package:getprofile/screens/UI/home_screen_new.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroInsta extends StatefulWidget {
@@ -20,7 +20,7 @@ class _IntroInstaState extends State<IntroInsta> {
   void _onIntroEnd(context) {
     BlocProvider.of<IntroscreenCubit>(context).introScreenValueDone();
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) =>const MainInsta()),
+      MaterialPageRoute(builder: (_) =>const NewHomePage()),
     );
   }
 
