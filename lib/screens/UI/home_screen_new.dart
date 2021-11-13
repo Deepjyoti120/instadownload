@@ -9,7 +9,6 @@ import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 
 class NewHomePage extends StatefulWidget {
   const NewHomePage({Key? key}) : super(key: key);
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
