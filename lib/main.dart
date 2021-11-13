@@ -4,7 +4,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:getprofile/screens/UI/IntroScreen/intro_screen.dart';
 import 'package:getprofile/screens/UI/home_screen_new.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:getprofile/cubit/introscreen_cubit.dart'; 
+import 'package:getprofile/cubit/introscreen_cubit.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -32,12 +32,12 @@ class MyApp extends StatelessWidget {
         title: 'Getprofile',
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
-            if (state.introScreenValue == false) {
-              return const IntroScreen();
-            }
+             if (state.introScreenValue == true) {
             return const NewHomePage();
+          }
+          return const IntroScreen();
           },
-        ),
+        ), 
       ),
     );
   }
