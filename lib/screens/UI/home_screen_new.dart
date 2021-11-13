@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
@@ -10,23 +11,11 @@ class NewHomePage extends StatefulWidget {
   const NewHomePage({Key? key}) : super(key: key);
 
   @override
-  _NewHomePageState createState() => _NewHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _NewHomePageState extends State<NewHomePage> {
-  int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    ProfileSection(),
-    PhotoSection(),
-    VideoSection(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class _MyHomePageState extends State<NewHomePage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,28 +25,45 @@ class _NewHomePageState extends State<NewHomePage> {
         automaticallyImplyLeading: false,
         title: const TextGradient(text: "Getprofile"),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.userCheck),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.camera),
-            label: 'Photo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FeatherIcons.film),
-            label: 'Reels',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.grey[900],
-        onTap: _onItemTapped,
-        showUnselectedLabels: false,
-        
-      ),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: getBody(),
+      bottomNavigationBar: _buildBottomBar(),
+    );
+  }
+
+  Widget _buildBottomBar() {
+    return CustomBottomBar(
+      containerHeight: 60,
+      selectedIndex: _currentIndex,
+      showElevation: true,
+      itemCornerRadius: 24,
+      curve: Curves.easeInOutCirc,
+      onItemSelected: (index) => setState(() => _currentIndex = index),
+      items: <BottomBarItem>[
+        BottomBarItem(
+            icon: const Icon(FeatherIcons.userCheck),
+            title: const Text('Profile')),
+        BottomBarItem(
+          icon: const Icon(FeatherIcons.camera),
+          title: const Text('Photo'),
+          activeColor: Colors.purpleAccent,
+        ),
+        BottomBarItem(
+          icon: const Icon(FeatherIcons.film),
+          title: const Text('Reels '),
+        ),
+      ],
+    );
+  }
+
+  Widget getBody() {
+    List<Widget> pages = const [
+      ProfileSection(),
+      PhotoSection(),
+      VideoSection(),
+    ];
+    return IndexedStack(
+      index: _currentIndex,
+      children: pages,
     );
   }
 }
