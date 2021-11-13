@@ -11,10 +11,10 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize();
-  FlutterDownloader.registerCallback(FlutterDownload.callback);
-  await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
+  FlutterDownloader.registerCallback(FlutterDownload.callback);
+  await MobileAds.initialize();
   runApp(const MyApp());
 }
 
