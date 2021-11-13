@@ -35,7 +35,7 @@ class _MyHomePageState extends State<NewHomePage> {
       selectedIndex: _currentIndex,
       showElevation: true,
       itemCornerRadius: 24,
-      curve: Curves.easeInOutCirc,
+      curve: Curves.bounceOut,
       onItemSelected: (index) => setState(() => _currentIndex = index),
       items: <BottomBarItem>[
         BottomBarItem(

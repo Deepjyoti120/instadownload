@@ -8,6 +8,7 @@ import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/ads/small_banner.dart';
+import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/search_field.dart';
 import 'package:getprofile/screens/widgets/tips_widget.dart';
@@ -35,20 +36,7 @@ class _ProfileSectionState extends State<ProfileSection> {
       // backgroundColor: Colors.red,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(146.0),
-          gradient: const RadialGradient(
-            center: Alignment(0.54, 1.19),
-            radius: 0.953,
-            colors: [
-              Color(0xFFFFDD55),
-              Color(0xFFFFE477),
-              Color(0xFFFF8D7E),
-              Color(0xFFE825C1)
-            ],
-            stops: [0.0, 0.127, 0.492, 1.0],
-          ),
-        ),
+        decoration: getProfileBGColor(),
         child: FloatingActionButton.extended(
           backgroundColor: Colors.transparent,
           elevation: 0,

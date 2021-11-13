@@ -7,6 +7,7 @@ import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/ads/small_banner.dart';
+import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -30,10 +31,8 @@ class _PhotoSectionState extends State<PhotoSection> {
     super.initState();
     _controller.onEvent.listen((e) {
       final event = e.keys.first;
-      // final info = e.values.first;
       switch (event) {
         case NativeAdEvent.loaded:
-          // setState(() => _bannerAdHeight = (info as int)?.toDouble());
           break;
         default:
           break;
@@ -47,26 +46,12 @@ class _PhotoSectionState extends State<PhotoSection> {
     _controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(146.0),
-          gradient: const RadialGradient(
-            center: Alignment(0.54, 1.19),
-            radius: 0.953,
-            colors: [
-              Color(0xFFFFDD55),
-              Color(0xFFFFE477),
-              Color(0xFFFF8D7E),
-              Color(0xFFE825C1)
-            ],
-            stops: [0.0, 0.127, 0.492, 1.0],
-          ),
-        ),
+        decoration: getProfileBGColor(),
         child: FloatingActionButton.extended(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -161,15 +146,15 @@ class _PhotoSectionState extends State<PhotoSection> {
                   ),
                 ],
               ),
-             const SizedBox(height: 10),
-             const BannerSmall(),
-             const SizedBox(height: 4),
+              const SizedBox(height: 10),
+              const BannerSmall(),
+              const SizedBox(height: 4),
               ExpansionTile(
-                collapsedTextColor:const Color(0xff1abc9c),
+                collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
+                textColor: const Color(0xff16a085),
                 title: Row(
-                  children: const[
+                  children: const [
                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
@@ -191,7 +176,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                         const Text(
+                          const Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -199,7 +184,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                         const SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           // Text(
                           //   'eg. deepjyoti_sam',
                           //   style: TextStyle(
@@ -212,7 +197,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                           //   style: TextStyle(
                           //       fontSize: 12, fontWeight: FontWeight.bold),
                           // ),
-                        const  SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -222,7 +207,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/Photo01.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                               const   Icon(Icons.error),
+                                  const Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -232,12 +217,12 @@ class _PhotoSectionState extends State<PhotoSection> {
                 ],
               ),
               const SizedBox(height: 10),
-              ExpansionTile (
-                collapsedTextColor:const Color(0xff1abc9c),
+              ExpansionTile(
+                collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
+                textColor: const Color(0xff16a085),
                 title: Row(
-                  children:const [
+                  children: const [
                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
@@ -259,7 +244,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                         const Text(
+                          const Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -267,20 +252,20 @@ class _PhotoSectionState extends State<PhotoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                        const  SizedBox(height: 2),
-                         const Text(
+                          const SizedBox(height: 2),
+                          const Text(
                             'eg. see on Example photo and click copy link tab',
                             style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xffff4d4d)),
                           ),
-                        const  Text(
+                          const Text(
                             'Then paste link by clicking paste button',
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.bold),
                           ),
-                        const  SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -290,7 +275,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/Photo02.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                                const  Icon(Icons.error),
+                                  const Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -299,7 +284,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                   ),
                 ],
               ),
-             const BannerRectangle(),
+              const BannerRectangle(),
             ],
           ),
         ),
@@ -334,8 +319,8 @@ class _PhotoSectionState extends State<PhotoSection> {
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration:const Duration(seconds: 5),
-        content:const Text(
+        duration: const Duration(seconds: 5),
+        content: const Text(
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -348,7 +333,7 @@ class _PhotoSectionState extends State<PhotoSection> {
   void showSnackbarErrorPhoto() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration:const Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
         content: const Text(
           "Please verify link and try again",
           style: TextStyle(fontWeight: FontWeight.bold),

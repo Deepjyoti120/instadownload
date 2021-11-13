@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getprofile/cubit/introscreen_cubit.dart';
 import 'package:getprofile/screens/UI/IntroScreen/comonents/intro_content.dart';
 import 'package:getprofile/screens/UI/home_screen_new.dart';
+import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 
 class IntroHome extends StatefulWidget {
   const IntroHome({Key? key}) : super(key: key);
@@ -16,9 +17,8 @@ class _IntroHomeState extends State<IntroHome> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      
       "image": "assets/images/introProfile1.svg",
-      "text": "Get your Instagram Profile Pic using GetProfile!"
+      "text": "Get your Instagram Profile Pic using \nGetProfile!"
     },
     {
       "text":
@@ -56,7 +56,7 @@ class _IntroHomeState extends State<IntroHome> {
             Expanded(
               flex: 2,
               child: Column(
-                children:[
+                children: [
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -66,16 +66,33 @@ class _IntroHomeState extends State<IntroHome> {
                     ),
                   ),
                   const Spacer(flex: 3),
-                  TextButton(
-                      onPressed: () {
-                        BlocProvider.of<IntroscreenCubit>(context)
-                            .introScreenValueDone();
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (_) => const NewHomePage()),
-                        );
-                      },
-                      child: const Text('data')),
+                  Container(
+                    decoration: getProfileBGColor(),
+                    child: TextButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(146.0),
+                        ))),
+                        onPressed: () {
+                          BlocProvider.of<IntroscreenCubit>(context)
+                              .introScreenValueDone();
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (_) => const NewHomePage()),
+                          );
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
+                          child: Text(
+                            'Continue',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )),
+                  ),
                   const Spacer(),
                 ],
               ),
@@ -89,14 +106,14 @@ class _IntroHomeState extends State<IntroHome> {
   AnimatedContainer buildDot({int? index}) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
-      margin: const EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 20 : 6,
+      margin: const EdgeInsets.only(right: 8),
+      height: 8,
+      width: currentPage == index ? 22 : 8,
       decoration: BoxDecoration(
         color: currentPage == index
-            ? const Color(0xFFD8D8df)
-            : const Color(0xFFD8D8D8),
-        borderRadius: BorderRadius.circular(3),
+            ? const Color(0xFF00e0ff)
+            : const Color(0xFF581b98),
+        borderRadius: BorderRadius.circular(6),
       ),
     );
   }

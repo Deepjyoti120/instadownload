@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         title: 'Getprofile',
         home: BlocBuilder<IntroscreenCubit, IntroscreenState>(
           builder: (context, state) {
-            if (state.introScreenValue == true) {
+            if (state.introScreenValue == false) {
               return const IntroScreen();
             }
             return const NewHomePage();
