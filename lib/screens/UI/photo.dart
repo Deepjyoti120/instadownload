@@ -46,6 +46,7 @@ class _PhotoSectionState extends State<PhotoSection> {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
