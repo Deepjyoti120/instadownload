@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
+import 'package:getprofile/screens/whatsapp/home.dart';
 import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class NewHomePage extends StatefulWidget {
   const NewHomePage({Key? key}) : super(key: key);
@@ -23,6 +26,23 @@ class _MyHomePageState extends State<NewHomePage> {
         elevation: 0.6,
         automaticallyImplyLeading: false,
         title: const TextGradient(text: "Getprofile"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              photoNavigate();
+            },
+            icon: SvgPicture.asset(
+              'assets/images/wp.svg',
+              width: 24,
+              color: Colors.blueGrey,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(FeatherIcons.download),
+            color: Colors.blueGrey,
+          )
+        ],
       ),
       body: getBody(),
       bottomNavigationBar: _buildBottomBar(),
@@ -64,5 +84,21 @@ class _MyHomePageState extends State<NewHomePage> {
       index: _currentIndex,
       children: pages,
     );
+  }
+
+  void photoNavigate() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      try {
+        await Permission.storage.request();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeWPDownload(),
+          ),
+        );
+        // ignore: empty_catches
+      } catch (e) {}
+    }
   }
 }

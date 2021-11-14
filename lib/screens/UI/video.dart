@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,11 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/api/api.dart';
-import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart'; 
+import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
-import 'package:getprofile/screens/widgets/ads/small_banner.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
-import 'package:getprofile/screens/widgets/progress_awesome.dart'; 
+import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,15 +38,14 @@ class _VideoSectionState extends State<VideoSection> {
           onPressed: () {
             downloadVideo();
           },
-          label:const FloatingActionBtn(
+          label: const FloatingActionBtn(
             icon: Icon(
               FeatherIcons.arrowDownCircle,
-              // FeatherIcons.download,
               color: Colors.white,
               size: 18,
             ),
             titleText: Text(
-              "Get Video",
+              "Download",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
@@ -66,7 +66,7 @@ class _VideoSectionState extends State<VideoSection> {
                 // style: TextStyle(
                 //   color: Colors.blue,
                 // ),
-                decoration:const InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Paste Video link',
                   filled: true,
                   fillColor: Colors.white,
@@ -77,14 +77,12 @@ class _VideoSectionState extends State<VideoSection> {
                     color: Colors.black,
                     size: 18,
                   ),
-                  focusedBorder:   OutlineInputBorder(
+                  focusedBorder: OutlineInputBorder(
                     // 0xFF
-                    borderSide:
-                          BorderSide(color: Colors.blue, width: 2.0),
+                    borderSide: BorderSide(color: Colors.blue, width: 2.0),
                   ),
-                  enabledBorder:   OutlineInputBorder(
-                    borderSide:
-                          BorderSide(color: Colors.blue, width: 1.0),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
                     // borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   // border: OutlineInputBorder(
@@ -93,7 +91,7 @@ class _VideoSectionState extends State<VideoSection> {
                   // ),
                 ),
               ),
-const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -107,11 +105,11 @@ const SizedBox(height: 10),
                       });
                     },
                     child: const Padding(
-                      padding:   EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Paste'),
                     ),
                   ),
-                const  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
@@ -120,22 +118,20 @@ const SizedBox(height: 10),
                           ? launch(videoPhotoLink.text)
                           : debugPrint("Can not launch");
                     },
-                    child:const Padding(
-                      padding:   EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: Text('Verify'),
                     ),
                   ),
                 ],
               ),
-             const SizedBox(height: 10),
-             const BannerSmall(), 
-             const SizedBox(height: 4),
+              const SizedBox(height: 10),
               ExpansionTile(
-                collapsedTextColor:const Color(0xff1abc9c),
+                collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
+                textColor: const Color(0xff16a085),
                 title: Row(
-                  children:const [
+                  children: const [
                     Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
@@ -157,7 +153,7 @@ const SizedBox(height: 10),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                       const   Text(
+                          const Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -165,7 +161,7 @@ const SizedBox(height: 10),
                               color: Color(0xff34495e),
                             ),
                           ),
-                         const SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           // Text(
                           //   'eg. deepjyoti_sam',
                           //   style: TextStyle(
@@ -178,7 +174,7 @@ const SizedBox(height: 10),
                           //   style: TextStyle(
                           //       fontSize: 12, fontWeight: FontWeight.bold),
                           // ),
-                         const SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -188,7 +184,7 @@ const SizedBox(height: 10),
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/copylinkReels01.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                                 const Icon(Icons.error),
+                                  const Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -197,20 +193,20 @@ const SizedBox(height: 10),
                   ),
                 ],
               ),
-             const SizedBox(height: 10),
+              const SizedBox(height: 10),
               ExpansionTile(
-                collapsedTextColor:const Color(0xff1abc9c),
+                collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
+                textColor: const Color(0xff16a085),
                 title: Row(
-                  children:const [
-                     Icon(
+                  children: const [
+                    Icon(
                       FeatherIcons.checkCircle,
                       size: 18,
                       color: Color(0xff1abc9c),
                     ),
-                     SizedBox(width: 6),
-                     Text(
+                    SizedBox(width: 6),
+                    Text(
                       'How to get Reels/Videos link',
                       style: TextStyle(
                         fontSize: 14.0,
@@ -225,7 +221,7 @@ const SizedBox(height: 10),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                        const  Text(
+                          const Text(
                             'Copy post link and paste then ',
                             style: TextStyle(
                               fontSize: 14,
@@ -233,20 +229,20 @@ const SizedBox(height: 10),
                               color: Color(0xff34495e),
                             ),
                           ),
-                        const  SizedBox(height: 2),
-                        const  Text(
+                          const SizedBox(height: 2),
+                          const Text(
                             'eg. see on Example photo and click copy link tab',
                             style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xffff4d4d)),
                           ),
-                        const  Text(
+                          const Text(
                             'Then paste link by clicking paste button',
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.bold),
                           ),
-                        const  SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Padding(
@@ -256,7 +252,7 @@ const SizedBox(height: 10),
                                   'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/copylinkReels02.jpg',
                               placeholder: (context, url) => progressAwesome(),
                               errorWidget: (context, url, error) =>
-                               const   Icon(Icons.error),
+                                  const Icon(Icons.error),
                             ),
                           ),
                         ],
@@ -264,8 +260,8 @@ const SizedBox(height: 10),
                     ),
                   ),
                 ],
-              ), 
-            const  BannerRectangle(),
+              ),
+              const BannerRectangle(),
             ],
           ),
         ),
@@ -277,6 +273,11 @@ const SizedBox(height: 10),
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
+        if (!Directory('/storage/emulated/0/Download/GetProfile/')
+            .existsSync()) {
+          Directory('/storage/emulated/0/Download/GetProfile/')
+              .createSync(recursive: true);
+        }
         var myvideourl = await flutterInsta.getInstaVideo(videoPhotoLink.text);
         String s = myvideourl;
         var uri = Uri.parse(s);
@@ -284,7 +285,7 @@ const SizedBox(height: 10),
         await FlutterDownloader.enqueue(
           url: myvideourl,
           fileName: ws,
-          savedDir: '/sdcard/Download/',
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
@@ -299,8 +300,8 @@ const SizedBox(height: 10),
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration:const Duration(seconds: 5),
-        content:const Text(
+        duration: const Duration(seconds: 5),
+        content: const Text(
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -313,8 +314,8 @@ const SizedBox(height: 10),
   void showSnackbarErrorVideo() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration:const Duration(seconds: 2),
-        content:const Text(
+        duration: const Duration(seconds: 2),
+        content: const Text(
           "Please verify link and try again",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),

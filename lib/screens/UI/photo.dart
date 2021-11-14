@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
-import 'package:getprofile/screens/widgets/ads/small_banner.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
@@ -67,7 +68,7 @@ class _PhotoSectionState extends State<PhotoSection> {
               size: 18,
             ),
             titleText: Text(
-              "Get Photo",
+              "Download",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
@@ -84,10 +85,6 @@ class _PhotoSectionState extends State<PhotoSection> {
             children: [
               TextField(
                 controller: pastePhotoLink,
-                // cursorColor: Colors.yellow,
-                // style: TextStyle(
-                //   color: Colors.blue,
-                // ),
                 decoration: const InputDecoration(
                   labelText: 'Paste Post copied link',
                   filled: true,
@@ -122,7 +119,6 @@ class _PhotoSectionState extends State<PhotoSection> {
                       FlutterClipboard.paste().then((value) {
                         setState(() {
                           pastePhotoLink.text = value;
-                          // pasteValue = value;
                         });
                       });
                     },
@@ -148,8 +144,6 @@ class _PhotoSectionState extends State<PhotoSection> {
                 ],
               ),
               const SizedBox(height: 10),
-              const BannerSmall(),
-              const SizedBox(height: 4),
               ExpansionTile(
                 collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
@@ -297,6 +291,11 @@ class _PhotoSectionState extends State<PhotoSection> {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
+        if (!Directory('/storage/emulated/0/Download/GetProfile/')
+            .existsSync()) {
+          Directory('/storage/emulated/0/Download/GetProfile/')
+              .createSync(recursive: true);
+        }
         var getvideourl = await flutterInsta.getPostPhoto(pastePhotoLink.text);
         String s = getvideourl;
         var uri = Uri.parse(s);
@@ -305,7 +304,7 @@ class _PhotoSectionState extends State<PhotoSection> {
         await FlutterDownloader.enqueue(
           url: getvideourl,
           fileName: ws,
-          savedDir: '/sdcard/Download/',
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());

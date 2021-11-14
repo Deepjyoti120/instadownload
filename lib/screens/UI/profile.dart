@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,8 +8,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
-import 'package:getprofile/screens/widgets/center_floatbtn.dart';
-import 'package:getprofile/screens/widgets/ads/small_banner.dart';
+import 'package:getprofile/screens/widgets/center_floatbtn.dart'; 
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/search_field.dart';
@@ -50,7 +51,7 @@ class _ProfileSectionState extends State<ProfileSection> {
               size: 18,
             ),
             titleText: Text(
-              "Get Profile",
+              "Download",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
@@ -103,9 +104,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              const BannerSmall(),
-              const SizedBox(height: 4),
+              const SizedBox(height: 10), 
               ExpansionTile(
                 collapsedTextColor:const Color(0xff1abc9c),
                 iconColor: Colors.blue,
@@ -235,6 +234,11 @@ class _ProfileSectionState extends State<ProfileSection> {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
+        if (!Directory('/storage/emulated/0/Download/GetProfile/')
+            .existsSync()) {
+          Directory('/storage/emulated/0/Download/GetProfile/')
+              .createSync(recursive: true);
+        }
         var getvideourl =
             await flutterInsta.getprofileDetails(profileName.text);
         String s = getvideourl;
@@ -243,7 +247,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         await FlutterDownloader.enqueue(
           url: getvideourl,
           fileName: ws,
-          savedDir: '/sdcard/Download/',
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
@@ -259,7 +263,7 @@ class _ProfileSectionState extends State<ProfileSection> {
   Future reStartgetprofile() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
-      try {
+      try { 
         var getvideourl =
             await flutterInsta.getprofileDetails(profileName.text);
         String s = getvideourl;
@@ -268,7 +272,7 @@ class _ProfileSectionState extends State<ProfileSection> {
         await FlutterDownloader.enqueue(
           url: getvideourl,
           fileName: ws,
-          savedDir: '/sdcard/Download/',
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
