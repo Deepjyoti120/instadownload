@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +7,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/api/api.dart';
 import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
-import 'package:getprofile/screens/widgets/center_floatbtn.dart'; 
+import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/search_field.dart';
@@ -104,21 +103,78 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10), 
+              const SizedBox(height: 10),
               ExpansionTile(
-                collapsedTextColor:const Color(0xff1abc9c),
+                collapsedTextColor: const Color(0xff1abc9c),
                 iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
+                textColor: const Color(0xff16a085),
+                title: Row(
+                  children: const [
+                    Icon(
+                      FeatherIcons.checkCircle,
+                      size: 18,
+                      color: Color(0xff1abc9c),
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      'How to get profile',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                children: [
+                  const Text(
+                    'Please Search Profile username Only',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff34495e),
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  const Text(
+                    'eg. appdesignx',
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xffff4d4d)),
+                  ),
+                  const Text(
+                    'Then type profile username and get your Profile',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/profile.jpg',
+                      placeholder: (context, url) => progressAwesome(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                collapsedTextColor: const Color(0xff1abc9c),
+                iconColor: Colors.blue,
+                textColor: const Color(0xff16a085),
                 title: Row(
                   children: [
-                   const Icon(
+                    const Icon(
                       FeatherIcons.codesandbox,
                       size: 18,
                       color: Color(0xff1abc9c),
                     ),
-                 const   SizedBox(width: 6),
+                    const SizedBox(width: 6),
                     Row(
-                      children:const [
+                      children: const [
                         Text("Pro Tips-",
                             style: TextStyle(
                               fontSize: 16,
@@ -136,93 +192,13 @@ class _ProfileSectionState extends State<ProfileSection> {
                             )),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     Icon(
-                    //       FeatherIcons.codesandbox,
-                    //       size: 22,
-                    //       color: Color(0xff1abc9c),
-                    //     ),
-                    //     Text("Pro Tips-",
-                    //         style: TextStyle(
-                    //           fontSize: 16,
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Color(0xff1abc9c),
-                    //         )),
-                    //     SizedBox(
-                    //       width: 4,
-                    //     ),
-                    //     Text("if Download Not Start",
-                    //         style: TextStyle(
-                    //           fontSize: 12,
-                    //           fontWeight: FontWeight.bold,
-                    //           color: Color(0xff1abc9c),
-                    //         )),
-                    //   ],
-                    // ),
                   ],
                 ),
-                children:const [
+                children: const [
                   TipsWidget(),
                 ],
               ),
-              ExpansionTile(
-                collapsedTextColor:const Color(0xff1abc9c),
-                iconColor: Colors.blue,
-                textColor:const Color(0xff16a085),
-                title: Row(
-                  children:const [
-                    Icon(
-                      FeatherIcons.checkCircle,
-                      size: 18,
-                      color: Color(0xff1abc9c),
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      'How to get profile',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-                children: [
-                 const Text(
-                    'Please Search Profile username Only',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff34495e),
-                    ),
-                  ),
-                const  SizedBox(height: 2),
-                 const Text(
-                    'eg. appdesignx',
-                    style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xffff4d4d)),
-                  ),
-                const  Text(
-                    'Then type profile username and get your Profile',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                const  SizedBox(
-                    height: 4,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://raw.githubusercontent.com/Deepjyoti120/InstaDownloadAssets/master/Assets/Images/profile.jpg',
-                      placeholder: (context, url) => progressAwesome(),
-                      errorWidget: (context, url, error) =>const Icon(Icons.error),
-                    ),
-                  ),
-                ],
-              ),
-           const   BannerRectangle(),
+              const BannerRectangle(),
             ],
           ),
         ),
@@ -263,7 +239,7 @@ class _ProfileSectionState extends State<ProfileSection> {
   Future reStartgetprofile() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
-      try { 
+      try {
         var getvideourl =
             await flutterInsta.getprofileDetails(profileName.text);
         String s = getvideourl;
@@ -289,7 +265,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 5),
-        content:const Text(
+        content: const Text(
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -309,8 +285,8 @@ class _ProfileSectionState extends State<ProfileSection> {
     // showSnackbarError(String s) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration:const Duration(seconds: 2),
-        content:const Text(
+        duration: const Duration(seconds: 2),
+        content: const Text(
           // "Instagram Profile API is show! Please try again or wait... it will automaticall saved to your Galley once API is Active. While your profile Downloading Please try Photo and Videos .. Thank you .",
           "Instagram Profile API is slow! Please try again later",
           // s,
