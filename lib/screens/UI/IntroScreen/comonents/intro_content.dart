@@ -20,6 +20,7 @@ class SplashContent extends StatelessWidget {
         const Spacer(),
         const TextGradient(
           text: "GetProfile",
+          appbarfontsize: 26,
         ),
         Text(
           text!,

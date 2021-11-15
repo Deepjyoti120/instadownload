@@ -11,7 +11,9 @@ import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
+import 'package:getprofile/screens/widgets/shimmer.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VideoSection extends StatefulWidget {
@@ -80,6 +82,9 @@ class _VideoSectionState extends State<VideoSection> {
                     borderSide: BorderSide(color: Colors.blue, width: 1.0),
                   ),
                 ),
+              ),
+              const ShimmerText(
+                text: 'Download Instagram Reels in HD',
               ),
               const SizedBox(height: 10),
               Row(

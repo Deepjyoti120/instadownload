@@ -11,8 +11,10 @@ import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/search_field.dart';
+import 'package:getprofile/screens/widgets/shimmer.dart';
 import 'package:getprofile/screens/widgets/tips_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
 
@@ -32,7 +34,7 @@ class _ProfileSectionState extends State<ProfileSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         decoration: getProfileBGColor(),
@@ -68,6 +70,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                 labelText: 'Profile username',
                 pasteValue: profileName,
               ),
+              const ShimmerText(text: 'Download Instagram Profile in HD'),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +79,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                     onPressed: () {
                       FlutterClipboard.paste().then((value) {
                         setState(() {
-                          profileName.text = value; 
+                          profileName.text = value;
                         });
                       });
                     },
@@ -225,7 +228,7 @@ class _ProfileSectionState extends State<ProfileSection> {
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
-      } catch (e) { 
+      } catch (e) {
         return showSnackbarErrorProfile();
       }
     } else {
@@ -255,7 +258,8 @@ class _ProfileSectionState extends State<ProfileSection> {
     } else {
       debugPrint("Permission deined");
     }
-  } 
+  }
+
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -264,13 +268,13 @@ class _ProfileSectionState extends State<ProfileSection> {
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blue[700], 
+        backgroundColor: Colors.blue[700],
         behavior: SnackBarBehavior.floating,
       ),
     );
   }
- 
-  showSnackbarErrorProfile() { 
+
+  showSnackbarErrorProfile() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 2),
@@ -278,7 +282,7 @@ class _ProfileSectionState extends State<ProfileSection> {
           "Instagram Profile API is slow! Please try again later",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.red[700], 
+        backgroundColor: Colors.red[700],
         behavior: SnackBarBehavior.floating,
       ),
     );

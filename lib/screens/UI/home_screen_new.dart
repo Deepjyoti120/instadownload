@@ -25,7 +25,7 @@ class _MyHomePageState extends State<NewHomePage> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: const TextGradient(text: "Getprofile"),
+        title: const TextGradient(text: "Getprofile",appbarfontsize: 26,),
         actions: [
           IconButton(
             onPressed: () {

@@ -21,7 +21,18 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: const TextGradient(text: "StatusSave"),
+        title: Row(
+          children: const [
+            TextGradient(
+              text: "Status",
+              appbarfontsize: 26,
+            ),
+            TextGradient(
+              text: "Saver",
+              appbarfontsize: 16,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: _buildBottomBar(),
       body: getBody(),

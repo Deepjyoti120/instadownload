@@ -10,8 +10,10 @@ import 'package:getprofile/screens/widgets/ads/rectangle_banner.dart';
 import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
+import 'package:getprofile/screens/widgets/shimmer.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotoSection extends StatefulWidget {
@@ -62,7 +64,7 @@ class _PhotoSectionState extends State<PhotoSection> {
           },
           label: const FloatingActionBtn(
             icon: Icon(
-              FeatherIcons.arrowDownCircle, 
+              FeatherIcons.arrowDownCircle,
               color: Colors.white,
               size: 18,
             ),
@@ -95,14 +97,15 @@ class _PhotoSectionState extends State<PhotoSection> {
                     color: Colors.black,
                     size: 18,
                   ),
-                  focusedBorder: OutlineInputBorder( 
+                  focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 2.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 1.0), 
-                  ), 
+                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                  ),
                 ),
               ),
+              const ShimmerText(text: 'Download Instagram Photos in HD'),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -172,7 +175,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                          const SizedBox(height: 2), 
+                          const SizedBox(height: 2),
                           const SizedBox(
                             height: 4,
                           ),
@@ -280,7 +283,7 @@ class _PhotoSectionState extends State<PhotoSection> {
         var getvideourl = await flutterInsta.getPostPhoto(pastePhotoLink.text);
         String s = getvideourl;
         var uri = Uri.parse(s);
-        String ws = uri.pathSegments.last; 
+        String ws = uri.pathSegments.last;
         await FlutterDownloader.enqueue(
           url: getvideourl,
           fileName: ws,

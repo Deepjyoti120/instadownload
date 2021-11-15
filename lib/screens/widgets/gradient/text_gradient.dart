@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getprofile/screens/widgets/gradient/gradient_style.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:getprofile/screens/widgets/gradient/gradient_style.dart';
 
 class TextGradient extends StatelessWidget {
   final String text;
+  final double appbarfontsize;
   const TextGradient({
     Key? key,
     required this.text,
+    required this.appbarfontsize,
   }) : super(key: key);
 
   @override
@@ -25,7 +28,7 @@ class TextGradient extends StatelessWidget {
         ],
         stops: [0.0, 0.127, 0.492, 1.0],
       ),
-      style: GoogleFonts.balooBhaina(fontSize: 26, color: Colors.black),
+      style: GoogleFonts.balooBhaina(fontSize: appbarfontsize, color: Colors.black),
     );
   }
 }
