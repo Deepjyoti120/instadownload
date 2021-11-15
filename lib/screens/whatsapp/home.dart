@@ -21,7 +21,7 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: const TextGradient(text: "Getprofile"),
+        title: const TextGradient(text: "StatusSave"),
       ),
       bottomNavigationBar: _buildBottomBar(),
       body: getBody(),
@@ -49,7 +49,7 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
         ),
       ],
     );
-  } 
+  }
 
   Widget getBody() {
     List<Widget> pages = const [
@@ -60,5 +60,5 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
       index: _currentIndex,
       children: pages,
     );
-  } 
+  }
 }

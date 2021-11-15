@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
-import 'dart:io'; 
-import 'package:video_player/video_player.dart'; 
+import 'dart:io';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class VideoDownload extends StatefulWidget {
   const VideoDownload({Key? key}) : super(key: key);
@@ -14,24 +14,18 @@ final Directory directory =
     Directory('/storage/emulated/0/WhatsApp/Media/.Statuses');
 
 class _VideoDownloadState extends State<VideoDownload> {
-  VideoPlayerController? videoPlayerController;
-  // final File file = File('/storage/emulated/0/WhatsApp/Media/.Statuses/1.mp4');
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   controller = VideoPlayerController.file(file!)
-  //     ..addListener(() {
-  //       setState(() {});
-  //     })
-  //     ..setLooping(false)
-  //     ..initialize().then((value) => controller!.pause());
-  // }
+  // WebViewController? _controller;
 
-  // @override
-  // void dispose() {
-  //   controller?.dispose();
-  //   super.dispose();
-  // }
+// @override
+//   void didChangeAppLifecycleState(AppLifecycleState state) async {
+//     if (state == AppLifecycleState.paused && Platform.isAndroid) {
+//       _controller!.future!.then(
+//         (controller) => controller.evaluateJavascript(
+//             'var video = document.querySelector("video");video.pause();'),
+//         onError: (error) => debugPrint(error.toString()),
+//       );
+//     }
+//   }
   @override
   Widget build(BuildContext context) {
     final videoList = directory
@@ -43,11 +37,11 @@ class _VideoDownloadState extends State<VideoDownload> {
       return GridView.builder(
         itemCount: videoList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
+          crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
           childAspectRatio: 0.75,
-          mainAxisExtent: 270,
+          mainAxisExtent: 362,
         ),
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
@@ -74,34 +68,24 @@ class _VideoDownloadState extends State<VideoDownload> {
                   children: [
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      // child: Hero(
-                      //   tag: videoPath,
-                      child: Image.file(
-                        File(videoPath),
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: 210,
-                        fit: BoxFit.cover,
+                        height: 302,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: WebView(
+                            zoomEnabled: true,
+                            initialUrl: videoPath,
+                            javascriptMode: JavascriptMode.unrestricted,
+                            allowsInlineMediaPlayback: false,
+                            onWebViewCreated: (controller) =>
+                                controller.runJavascript(
+                                    'document.querySelector("video").muted = true;'),
+                          ),
+                        ),
                       ),
-                      // child: SizedBox(
-                      //   height: 210,
-                      //   child: WebView(
-                      //     allowsInlineMediaPlayback: true,
-                      //     initialUrl: videoPath,
-                      //   ),
-                      // ),
-                      // child: SizedBox(
-                      //   height: 210,
-                      //   child: VideoPlayer(
-                      //       VideoPlayerController.file(File(videoPath))
-                      //         ..addListener(() {
-                      //           setState(() {});
-                      //         })
-                      //         ..setLooping(false)
-                      //         ..initialize().then((value) =>
-                      //             VideoPlayerController.file(File(videoPath))
-                      //                 .play())),
-                      // ),
-                      // ),
                     ),
                   ],
                 ),
