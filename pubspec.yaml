@@ -28,6 +28,10 @@ dependencies:
   native_admob_flutter: ^1.5.0
   image_gallery_saver: ^1.7.1 
   video_thumbnail: ^0.4.3
+  video_player: ^2.2.7
+  webview_flutter: ^2.3.1
+  chewie: any
+  flutter_html: ^2.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
