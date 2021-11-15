@@ -14,18 +14,6 @@ final Directory directory =
     Directory('/storage/emulated/0/WhatsApp/Media/.Statuses');
 
 class _VideoDownloadState extends State<VideoDownload> {
-  // WebViewController? _controller;
-
-// @override
-//   void didChangeAppLifecycleState(AppLifecycleState state) async {
-//     if (state == AppLifecycleState.paused && Platform.isAndroid) {
-//       _controller!.future!.then(
-//         (controller) => controller.evaluateJavascript(
-//             'var video = document.querySelector("video");video.pause();'),
-//         onError: (error) => debugPrint(error.toString()),
-//       );
-//     }
-//   }
   @override
   Widget build(BuildContext context) {
     final videoList = directory
@@ -82,7 +70,7 @@ class _VideoDownloadState extends State<VideoDownload> {
                             allowsInlineMediaPlayback: false,
                             onWebViewCreated: (controller) =>
                                 controller.runJavascript(
-                                    'document.querySelector("video").muted = true;'),
+                                    'var vid = document.querySelector("video");vid.muted = true;vid.currentTime =0.1; document.querySelector("video").pause();'),
                           ),
                         ),
                       ),

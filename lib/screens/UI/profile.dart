@@ -32,8 +32,7 @@ class _ProfileSectionState extends State<ProfileSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Colors.red,
+    return Scaffold( 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         decoration: getProfileBGColor(),
@@ -77,8 +76,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                     onPressed: () {
                       FlutterClipboard.paste().then((value) {
                         setState(() {
-                          profileName.text = value;
-                          // pasteValue = value;
+                          profileName.text = value; 
                         });
                       });
                     },
@@ -227,8 +225,7 @@ class _ProfileSectionState extends State<ProfileSection> {
           showNotification: true,
           openFileFromNotification: true,
         ).whenComplete(() => showSnackbar());
-      } catch (e) {
-        // return downloadProfile();
+      } catch (e) { 
         return showSnackbarErrorProfile();
       }
     } else {
@@ -258,9 +255,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     } else {
       debugPrint("Permission deined");
     }
-  }
-
-  // show Snackbar
+  } 
   void showSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -269,35 +264,21 @@ class _ProfileSectionState extends State<ProfileSection> {
           "Success",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blue[700],
-        // action: SnackBarAction(
-        //   onPressed: () {},
-        //   label: "Undo",
-        //   textColor: Colors.white,
-        // ),
+        backgroundColor: Colors.blue[700], 
         behavior: SnackBarBehavior.floating,
       ),
     );
   }
-
-  // Error notification
-  showSnackbarErrorProfile() {
-    // showSnackbarError(String s) {
+ 
+  showSnackbarErrorProfile() { 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 2),
         content: const Text(
-          // "Instagram Profile API is show! Please try again or wait... it will automaticall saved to your Galley once API is Active. While your profile Downloading Please try Photo and Videos .. Thank you .",
           "Instagram Profile API is slow! Please try again later",
-          // s,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.red[700],
-        // action: SnackBarAction(
-        //   onPressed: () {},
-        //   label: "Undo",
-        //   textColor: Colors.white,
-        // ),
+        backgroundColor: Colors.red[700], 
         behavior: SnackBarBehavior.floating,
       ),
     );

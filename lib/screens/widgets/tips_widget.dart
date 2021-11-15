@@ -12,10 +12,6 @@ class TipsWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(4, 0, 4, 0),
       padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
-      // decoration: BoxDecoration(
-      //   color: Color(0xff8E55FD),
-      //   borderRadius: BorderRadius.all(Radius.circular(6)),
-      // ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         gradient: const RadialGradient(
@@ -35,7 +31,6 @@ class TipsWidget extends StatelessWidget {
         children: [
           Container(
             margin:const EdgeInsets.only(top: 4),
-            // width: 100,
             child:const Text("For Security Check Please Confirm you are not a Robot",
                 style: TextStyle(
                     fontSize: 16,
@@ -68,7 +63,6 @@ class TipsWidget extends StatelessWidget {
           ),
           Container(
             margin:const EdgeInsets.only(top: 8),
-            // width: 100,
             child:const Text(
                 "* Click on Verify Button and Open any Instagram Account",
                 style: TextStyle(
@@ -78,7 +72,6 @@ class TipsWidget extends StatelessWidget {
           ),
           Container(
             margin:const EdgeInsets.only(top: 8),
-            // width: 100,
             child: const Text("* Turn On/Off your mobile Data Connection",
                 style: TextStyle(
                     fontSize: 14,
@@ -88,7 +81,6 @@ class TipsWidget extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             margin:const EdgeInsets.only(top: 8),
-            // width: 100,
             child:const Text("OR",
                 style: TextStyle(
                     fontSize: 14,
@@ -97,7 +89,6 @@ class TipsWidget extends StatelessWidget {
           ),
           Container(
             margin:const EdgeInsets.only(top: 8),
-            // width: 100,
             child:const Text("* Turn On/Off your mobile Airplane Mode",
                 style: TextStyle(
                     fontSize: 14,

@@ -62,10 +62,6 @@ class _VideoSectionState extends State<VideoSection> {
             children: [
               TextField(
                 controller: videoPhotoLink,
-                // cursorColor: Colors.yellow,
-                // style: TextStyle(
-                //   color: Colors.blue,
-                // ),
                 decoration: const InputDecoration(
                   labelText: 'Paste Video link',
                   filled: true,
@@ -78,17 +74,11 @@ class _VideoSectionState extends State<VideoSection> {
                     size: 18,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    // 0xFF
                     borderSide: BorderSide(color: Colors.blue, width: 2.0),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue, width: 1.0),
-                    // borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
-                  // border: OutlineInputBorder(
-                  //   borderSide: BorderSide(color: Colors.blue, width: 0.0),
-                  //   borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  // ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -100,7 +90,6 @@ class _VideoSectionState extends State<VideoSection> {
                       FlutterClipboard.paste().then((value) {
                         setState(() {
                           videoPhotoLink.text = value;
-                          // pasteValue = value;
                         });
                       });
                     },
@@ -162,18 +151,6 @@ class _VideoSectionState extends State<VideoSection> {
                             ),
                           ),
                           const SizedBox(height: 2),
-                          // Text(
-                          //   'eg. deepjyoti_sam',
-                          //   style: TextStyle(
-                          //       fontSize: 13,
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Color(0xffff4d4d)),
-                          // ),
-                          // Text(
-                          //   'Then paste link by clicking paste button',
-                          //   style: TextStyle(
-                          //       fontSize: 12, fontWeight: FontWeight.bold),
-                          // ),
                           const SizedBox(
                             height: 4,
                           ),

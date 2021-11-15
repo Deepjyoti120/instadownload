@@ -79,15 +79,6 @@ class _PhotosDownloadState extends State<PhotosDownload> {
                         borderRadius: BorderRadius.circular(146.0),
                       ))),
                       onPressed: () async {
-                        // try {
-                        //   final myUri = Uri.parse(imgPath);
-                        //   final originalImageFile = File.fromUri(myUri);
-                        //   Uint8List? bytes;
-                        //   await originalImageFile.readAsBytes().then((value) {
-                        //     bytes = Uint8List.fromList(value);
-                        //   }).catchError((onError) {});
-                        //   await ImageGallerySaver.saveImage(
-                        //       Uint8List.fromList(bytes!));
                         try {
                           final originalVideoFile = File(imgPath); 
                           if (!Directory('/storage/emulated/0/Download/GetProfile/StatusSave')

@@ -16,10 +16,6 @@ class SearchField extends StatelessWidget {
     return TextField(
       textCapitalization: TextCapitalization.sentences,
       controller: pasteValue,
-      // cursorColor: Colors.yellow,
-      // style: TextStyle(
-      //   color: Colors.blue,
-      // ),
       decoration: InputDecoration(
         labelText: labelText,
         filled: true,
@@ -32,17 +28,11 @@ class SearchField extends StatelessWidget {
           size: 18,
         ),
         focusedBorder: const OutlineInputBorder(
-          // 0xFF
           borderSide:   BorderSide(color: Colors.blue, width: 2.0),
         ),
         enabledBorder: const OutlineInputBorder(
           borderSide:   BorderSide(color: Colors.blue, width: 1.0),
-          // borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        // border: OutlineInputBorder(
-        //   borderSide: BorderSide(color: Colors.blue, width: 0.0),
-        //   borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        // ),
       ),
     );
   }

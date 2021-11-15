@@ -62,8 +62,7 @@ class _PhotoSectionState extends State<PhotoSection> {
           },
           label: const FloatingActionBtn(
             icon: Icon(
-              FeatherIcons.arrowDownCircle,
-              // FeatherIcons.download,
+              FeatherIcons.arrowDownCircle, 
               color: Colors.white,
               size: 18,
             ),
@@ -96,18 +95,12 @@ class _PhotoSectionState extends State<PhotoSection> {
                     color: Colors.black,
                     size: 18,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    // 0xFF
+                  focusedBorder: OutlineInputBorder( 
                     borderSide: BorderSide(color: Colors.blue, width: 2.0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
-                    // borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
-                  // border: OutlineInputBorder(
-                  //   borderSide: BorderSide(color: Colors.blue, width: 0.0),
-                  //   borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  // ),
+                    borderSide: BorderSide(color: Colors.blue, width: 1.0), 
+                  ), 
                 ),
               ),
               const SizedBox(height: 10),
@@ -179,19 +172,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                               color: Color(0xff34495e),
                             ),
                           ),
-                          const SizedBox(height: 2),
-                          // Text(
-                          //   'eg. deepjyoti_sam',
-                          //   style: TextStyle(
-                          //       fontSize: 13,
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Color(0xffff4d4d)),
-                          // ),
-                          // Text(
-                          //   'Then paste link by clicking paste button',
-                          //   style: TextStyle(
-                          //       fontSize: 12, fontWeight: FontWeight.bold),
-                          // ),
+                          const SizedBox(height: 2), 
                           const SizedBox(
                             height: 4,
                           ),
@@ -299,8 +280,7 @@ class _PhotoSectionState extends State<PhotoSection> {
         var getvideourl = await flutterInsta.getPostPhoto(pastePhotoLink.text);
         String s = getvideourl;
         var uri = Uri.parse(s);
-        String ws = uri.pathSegments.last;
-        // FileName: edit end
+        String ws = uri.pathSegments.last; 
         await FlutterDownloader.enqueue(
           url: getvideourl,
           fileName: ws,
