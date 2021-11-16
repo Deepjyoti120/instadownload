@@ -1,10 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'dart:io';
-import 'package:webview_flutter/webview_flutter.dart';
+
+import 'package:flutter/material.dart';
+import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
+import 'package:video_player/video_player.dart';
+
+import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 
 class VideoDownload extends StatefulWidget {
-  const VideoDownload({Key? key}) : super(key: key);
+  const VideoDownload({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _VideoDownloadState createState() => _VideoDownloadState();
@@ -31,7 +36,8 @@ class _VideoDownloadState extends State<VideoDownload> {
           childAspectRatio: 0.75,
           mainAxisExtent: 362,
         ),
-        shrinkWrap: true, 
+        shrinkWrap: true,
+        // physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
           final videoPath = videoList[index];
@@ -57,19 +63,13 @@ class _VideoDownloadState extends State<VideoDownload> {
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: 302,
                         child: Container(
+                          height: 302,
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child: WebView(
-                            zoomEnabled: true,
-                            initialUrl: videoPath,
-                            javascriptMode: JavascriptMode.unrestricted,
-                            allowsInlineMediaPlayback: false,
-                            onWebViewCreated: (controller) =>
-                                controller.runJavascript(
-                                    'var vid = document.querySelector("video");vid.pause();vid.muted = true;vid.currentTime = 0.1;'),
+                          child: ConsFile(
+                            file: File(videoPath),
                           ),
                         ),
                       ),
@@ -167,3 +167,4 @@ class _VideoDownloadState extends State<VideoDownload> {
     );
   }
 }
+
