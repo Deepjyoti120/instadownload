@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
-import 'package:video_player/video_player.dart';
 
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 
