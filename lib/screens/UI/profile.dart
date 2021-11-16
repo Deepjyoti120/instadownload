@@ -28,7 +28,7 @@ class ProfileSection extends StatefulWidget {
 class _ProfileSectionState extends State<ProfileSection> {
   TextEditingController profileName = TextEditingController();
   final String url = "https://www.instagram.com/";
-  final String verifyCode = "/?__a=1";
+  final String viewCode = "/?__a=1";
   final Getprofile flutterInsta = Getprofile();
 
   @override
@@ -92,13 +92,13 @@ class _ProfileSectionState extends State<ProfileSection> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await canLaunch(url + profileName.text + verifyCode)
+                      await canLaunch(url + profileName.text + viewCode)
                           ? launch(url + profileName.text)
                           : debugPrint("Can not launch");
                     },
                     child: const Padding(
                       padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('Verify'),
+                      child: Text('View'),
                     ),
                   ),
                 ],

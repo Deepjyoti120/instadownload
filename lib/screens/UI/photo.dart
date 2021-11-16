@@ -133,7 +133,7 @@ class _PhotoSectionState extends State<PhotoSection> {
                     },
                     child: const Padding(
                       padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('Verify'),
+                      child: Text('View'),
                     ),
                   ),
                 ],
@@ -317,7 +317,7 @@ class _PhotoSectionState extends State<PhotoSection> {
       SnackBar(
         duration: const Duration(seconds: 2),
         content: const Text(
-          "Please verify link and try again",
+          "Please View link and try again",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.red[700],

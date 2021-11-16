@@ -1,7 +1,7 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
 
 class ConsFile extends StatefulWidget {
@@ -21,7 +21,7 @@ class _ConsFileState extends State<ConsFile> {
     super.initState();
     controller = VideoPlayerController.file(widget.file)
       ..addListener(() => setState(() {}))
-      ..setLooping(true)
+      ..setLooping(false)
       ..initialize().then((value) => controller!.pause());
   }
 
@@ -33,6 +33,44 @@ class _ConsFileState extends State<ConsFile> {
 
   @override
   Widget build(BuildContext context) {
-    return VideoPlayer(controller!);
+    // return GestureDetector(
+    // onTap: () => controller!.value.isPlaying
+    //     ? controller!.pause()
+    //     : controller!.play(),
+    // child: VideoPlayer(controller!));
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              height: 302,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              child: GestureDetector(
+                  onTap: () => controller!.value.isPlaying
+                      ? controller!.pause()
+                      : controller!.play(),
+                  child: VideoPlayer(controller!)),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 12,
+          right: 12,
+          child: SafeArea(
+            child: Icon(
+              controller!.value.isPlaying
+                  ? FeatherIcons.pauseCircle
+                  : FeatherIcons.playCircle,
+              size: 18,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

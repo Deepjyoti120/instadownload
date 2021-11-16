@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
-
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 
 class VideoDownload extends StatefulWidget {
@@ -35,7 +34,7 @@ class _VideoDownloadState extends State<VideoDownload> {
           mainAxisExtent: 362,
         ),
         shrinkWrap: true,
-        // physics: const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
           final videoPath = videoList[index];
@@ -55,24 +54,8 @@ class _VideoDownloadState extends State<VideoDownload> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: Container(
-                          height: 302,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                          child: ConsFile(
-                            file: File(videoPath),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                ConsFile(
+                  file: File(videoPath),
                 ),
                 const SizedBox(
                   height: 4,
@@ -128,7 +111,7 @@ class _VideoDownloadState extends State<VideoDownload> {
           child: Container(
             padding: const EdgeInsets.only(bottom: 60.0),
             child: const Text(
-              'Sorry, No Image Found!',
+              'Sorry, No Videos Found!',
               style: TextStyle(fontSize: 18.0),
             ),
           ),
@@ -165,4 +148,3 @@ class _VideoDownloadState extends State<VideoDownload> {
     );
   }
 }
-
