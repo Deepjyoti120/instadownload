@@ -70,7 +70,7 @@ class _VideoDownloadState extends State<VideoDownload> {
                             allowsInlineMediaPlayback: false,
                             onWebViewCreated: (controller) =>
                                 controller.runJavascript(
-                                    'var vid = document.querySelector("video");vid.muted = true;vid.currentTime =0.1; document.querySelector("video").pause();'),
+                                    'var vid = document.querySelector("video");vid.pause();vid.muted = true;vid.currentTime = 0.1;'),
                           ),
                         ),
                       ),
