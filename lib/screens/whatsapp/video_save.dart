@@ -31,8 +31,7 @@ class _VideoDownloadState extends State<VideoDownload> {
           childAspectRatio: 0.75,
           mainAxisExtent: 362,
         ),
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true, 
         padding: const EdgeInsets.all(16),
         itemBuilder: (context, index) {
           final videoPath = videoList[index];
