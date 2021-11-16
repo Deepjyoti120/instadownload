@@ -14,7 +14,6 @@ import 'package:getprofile/screens/widgets/search_field.dart';
 import 'package:getprofile/screens/widgets/shimmer.dart';
 import 'package:getprofile/screens/widgets/tips_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
 
