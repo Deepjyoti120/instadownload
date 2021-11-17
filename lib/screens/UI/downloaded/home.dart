@@ -21,9 +21,22 @@ class _HomeIDownloadState extends State<HomeIDownload> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: const TextGradient(
-          text: "I Downloaded",
-          appbarfontsize: 24,
+        title: Row(
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(bottom: 4),
+              child: Icon(
+                FeatherIcons.instagram,
+                size: 16,
+                color: Colors.purpleAccent,
+              ),
+            ),
+            SizedBox(width: 4),
+            TextGradient(
+              text: "Repost",
+              appbarfontsize: 20,
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: _buildBottomBar(),

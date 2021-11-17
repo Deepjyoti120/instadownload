@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
-import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 
 class VideoDownloaded extends StatefulWidget {
   const VideoDownloaded({
@@ -56,6 +55,7 @@ class _VideoDownloadedState extends State<VideoDownloaded> {
               children: [
                 ConsFile(
                   file: File(videoPath),
+                  videoPath: videoPath,
                 ),
               ],
             ),

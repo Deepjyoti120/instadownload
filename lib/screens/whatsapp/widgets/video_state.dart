@@ -2,14 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:share/share.dart';
 import 'package:video_player/video_player.dart';
+
+import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 
 class ConsFile extends StatefulWidget {
   const ConsFile({
     Key? key,
     required this.file,
+    this.videoPath,
   }) : super(key: key);
   final File file;
+  final String? videoPath;
   @override
   _ConsFileState createState() => _ConsFileState();
 }
@@ -33,11 +38,6 @@ class _ConsFileState extends State<ConsFile> {
 
   @override
   Widget build(BuildContext context) {
-    // return GestureDetector(
-    // onTap: () => controller!.value.isPlaying
-    //     ? controller!.pause()
-    //     : controller!.play(),
-    // child: VideoPlayer(controller!));
     return Stack(
       children: [
         ClipRRect(
@@ -60,14 +60,54 @@ class _ConsFileState extends State<ConsFile> {
         Positioned(
           bottom: 12,
           right: 12,
-          child: SafeArea(
-            child: Icon(
+          child: Row(
+            children: [
               controller!.value.isPlaying
-                  ? FeatherIcons.pauseCircle
-                  : FeatherIcons.playCircle,
-              size: 18,
-              color: Colors.white,
-            ),
+                  ? Container()
+                  : Container(
+                      height: 26,
+                      width: 64,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xFFdff9fb),
+                            blurRadius: 1,
+                            spreadRadius: 1,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        padding: const EdgeInsets.all(0),
+                        iconSize: 16,
+                        hoverColor: Colors.amberAccent,
+                        onPressed: () async {
+                          await Share.shareFiles([widget.videoPath!]);
+                        },
+                        icon: Row(
+                          children: const [
+                            Icon(
+                              Icons.share_outlined,
+                              color: Colors.purpleAccent,
+                            ),
+                            TextGradient(text: 'Repost', appbarfontsize: 14)
+                          ],
+                        ),
+                      ),
+                    ),
+              const SizedBox(
+                width: 4,
+              ),
+              Icon(
+                controller!.value.isPlaying
+                    ? FeatherIcons.pauseCircle
+                    : FeatherIcons.playCircle,
+                size: 18,
+                color: Colors.white,
+              ),
+            ],
           ),
         ),
       ],

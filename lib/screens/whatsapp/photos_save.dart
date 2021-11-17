@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
-import 'dart:io'; 
+import 'package:flutter/material.dart'; 
+import 'dart:io';
+
+import 'package:share/share.dart';
+
 class PhotosDownload extends StatefulWidget {
   const PhotosDownload({Key? key}) : super(key: key);
 
@@ -63,29 +65,26 @@ class _PhotosDownloadState extends State<PhotosDownload> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                    ), 
+                    ),
                   ],
                 ),
                 const SizedBox(
                   height: 4,
                 ),
-                Container(
-                  decoration: getProfileBGColor(),
-                  child: TextButton(
-                      style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(146.0),
-                      ))),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
                       onPressed: () async {
                         try {
-                          final originalVideoFile = File(imgPath); 
-                          if (!Directory('/storage/emulated/0/Download/GetProfile/StatusSave')
+                          final originalVideoFile = File(imgPath);
+                          if (!Directory(
+                                  '/storage/emulated/0/Download/GetProfile/StatusSave')
                               .existsSync()) {
-                            Directory('/storage/emulated/0/Download/GetProfile/StatusSave')
+                            Directory(
+                                    '/storage/emulated/0/Download/GetProfile/StatusSave')
                                 .createSync(recursive: true);
-                          } 
+                          }
                           final curDate = DateTime.now().toString();
                           final newFileName =
                               '/storage/emulated/0/Download/GetProfile/StatusSave/GetProfile-$curDate.jpg';
@@ -95,17 +94,23 @@ class _PhotosDownloadState extends State<PhotosDownload> {
                           showSnackbarError();
                         }
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: Text(
-                          'Download',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                ),
+                      icon: const Icon(
+                        Icons.download,
+                        color: Colors.purpleAccent,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    IconButton(
+                      onPressed: () async {
+                        await Share.shareFiles([imgPath]);
+                      },
+                      icon: const Icon(
+                        Icons.share_outlined,
+                        color: Colors.purpleAccent,
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           );

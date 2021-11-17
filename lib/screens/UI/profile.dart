@@ -294,9 +294,9 @@ class _ProfileSectionState extends State<ProfileSection> {
   showSnackbarErrorProfile() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 10),
         content: const Text(
-          "Instagram Profile API is slow! Please try again later",
+          "Please turn on/off your Airplane mode",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.red[700],

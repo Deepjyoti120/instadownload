@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
+import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 import 'dart:io';
+
+import 'package:share/share.dart';
 
 class PhotosDownloaded extends StatefulWidget {
   const PhotosDownloaded({Key? key}) : super(key: key);
@@ -52,7 +54,7 @@ class _PhotosDownloadedState extends State<PhotosDownloaded> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Stack(
-                  children: <Widget>[
+                  children: [
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
                       child: Hero(
@@ -65,6 +67,43 @@ class _PhotosDownloadedState extends State<PhotosDownloaded> {
                         ),
                       ),
                     ),
+                    Positioned(
+                      bottom: 4,
+                      right: 4,
+                      child: Container(
+                        height: 26,
+                        width: 64,
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFFdff9fb),
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          padding: const EdgeInsets.all(0),
+                          iconSize: 16,
+                          hoverColor: Colors.amberAccent,
+                          onPressed: () async {
+                            await Share.shareFiles([imgPath]);
+                          },
+                          icon: Row(
+                            children: const [
+                              Icon(
+                                Icons.share_outlined,
+                                color: Colors.purpleAccent,
+                              ),
+                              TextGradient(text: 'Repost', appbarfontsize: 14)
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],

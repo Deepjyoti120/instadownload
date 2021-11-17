@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
-import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
+import 'package:getprofile/screens/whatsapp/widgets/video_state.dart'; 
+import 'package:share/share.dart';
 
 class VideoDownload extends StatefulWidget {
   const VideoDownload({
@@ -60,46 +60,46 @@ class _VideoDownloadState extends State<VideoDownload> {
                 const SizedBox(
                   height: 4,
                 ),
-                Container(
-                  decoration: getProfileBGColor(),
-                  child: TextButton(
-                    style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(146.0),
-                    ))),
-                    onPressed: () async {
-                      try {
-                        final originalVideoFile = File(videoPath);
-                        if (!Directory(
-                                '/storage/emulated/0/Download/GetProfile/StatusSave')
-                            .existsSync()) {
-                          Directory(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () async {
+                        try {
+                          final originalVideoFile = File(videoPath);
+                          if (!Directory(
                                   '/storage/emulated/0/Download/GetProfile/StatusSave')
-                              .createSync(recursive: true);
+                              .existsSync()) {
+                            Directory(
+                                    '/storage/emulated/0/Download/GetProfile/StatusSave')
+                                .createSync(recursive: true);
+                          }
+                          final curDate = DateTime.now().toString();
+                          final newFileName =
+                              '/storage/emulated/0/Download/GetProfile/StatusSave/GetProfile-$curDate.jpg';
+                          await originalVideoFile.copy(newFileName);
+                          showSnackbar();
+                        } catch (e) {
+                          showSnackbarError();
                         }
-                        final curDate = DateTime.now().toString();
-                        final newFileName =
-                            '/storage/emulated/0/Download/GetProfile/StatusSave/GetProfile-$curDate.mp4';
-                        await originalVideoFile.copy(newFileName);
-                        showSnackbar();
-                      } catch (e) {
-                        showSnackbarError();
-                      }
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: Text(
-                        'Download',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                      },
+                      icon: const Icon(
+                        Icons.download,
+                        color: Colors.purpleAccent,
                       ),
                     ),
-                  ),
-                ),
+                    const SizedBox(width: 6),
+                    IconButton(
+                      onPressed: () async {
+                        await Share.shareFiles([videoPath]);
+                      },
+                      icon: const Icon(
+                        Icons.share_outlined,
+                        color: Colors.purpleAccent,
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           );
