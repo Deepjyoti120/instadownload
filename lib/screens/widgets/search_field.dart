@@ -21,17 +21,17 @@ class SearchField extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
-        contentPadding:const EdgeInsets.all(16),
-        prefixIcon:const Icon(
-          FeatherIcons.search,
+        contentPadding: const EdgeInsets.all(16),
+        prefixIcon: const Icon(
+          FeatherIcons.instagram,
           color: Colors.black,
           size: 18,
         ),
         focusedBorder: const OutlineInputBorder(
-          borderSide:   BorderSide(color: Colors.blue, width: 2.0),
+          borderSide: BorderSide(color: Colors.blue, width: 2.0),
         ),
         enabledBorder: const OutlineInputBorder(
-          borderSide:   BorderSide(color: Colors.blue, width: 1.0),
+          borderSide: BorderSide(color: Colors.blue, width: 1.0),
         ),
       ),
     );

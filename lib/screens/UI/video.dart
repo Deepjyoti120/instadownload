@@ -70,7 +70,7 @@ class _VideoSectionState extends State<VideoSection> {
                   floatingLabelBehavior: FloatingLabelBehavior.auto,
                   contentPadding: EdgeInsets.all(16),
                   prefixIcon: Icon(
-                    FeatherIcons.search,
+                    FeatherIcons.instagram,
                     color: Colors.black,
                     size: 18,
                   ),
@@ -97,9 +97,18 @@ class _VideoSectionState extends State<VideoSection> {
                         });
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('Paste'),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            FeatherIcons.copy,
+                            size: 16,
+                          ),
+                          SizedBox(width: 4),
+                          Text('Paste'),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -111,9 +120,18 @@ class _VideoSectionState extends State<VideoSection> {
                           ? launch(videoPhotoLink.text)
                           : debugPrint("Can not launch");
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('View'),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            FeatherIcons.instagram,
+                            size: 16,
+                          ),
+                          SizedBox(width: 4),
+                          Text('View'),
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -82,9 +82,18 @@ class _ProfileSectionState extends State<ProfileSection> {
                         });
                       });
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('Paste'),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            FeatherIcons.copy,
+                            size: 16,
+                          ),
+                          SizedBox(width: 4),
+                          Text('Paste'),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -96,9 +105,18 @@ class _ProfileSectionState extends State<ProfileSection> {
                           ? launch(url + profileName.text)
                           : debugPrint("Can not launch");
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: Text('View'),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            FeatherIcons.instagram,
+                            size: 16,
+                          ),
+                          SizedBox(width: 4),
+                          Text('View'),
+                        ],
+                      ),
                     ),
                   ),
                 ],

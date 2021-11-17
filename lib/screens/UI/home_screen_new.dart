@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:getprofile/ads/ads_helper.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
 import 'package:getprofile/screens/whatsapp/home.dart';
 import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+final interstitialAd = InterstitialAd(unitId: AdsHelper.interstitialAds); 
 
 class NewHomePage extends StatefulWidget {
   const NewHomePage({Key? key}) : super(key: key);
@@ -19,17 +23,40 @@ class NewHomePage extends StatefulWidget {
 class _MyHomePageState extends State<NewHomePage> {
   int _currentIndex = 0;
   @override
+  void initState() {
+    if (!interstitialAd.isLoaded) interstitialAd.load();
+    interstitialAd.onEvent.listen((e) {
+      final event = e.keys.first;
+      switch (event) {
+        case FullScreenAdEvent.closed:
+          interstitialAd.load();
+          break;
+        default:
+          break;
+      }
+    }); 
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: const TextGradient(text: "Getprofile",appbarfontsize: 26,),
+        title: const TextGradient(
+          text: "Getprofile",
+          appbarfontsize: 26,
+        ),
         actions: [
           IconButton(
-            onPressed: () {
-              photoNavigate();
+            onPressed: () async {
+              photoNavigate(); 
+              if (!interstitialAd.isAvailable) await interstitialAd.load();
+              if (interstitialAd.isAvailable) {
+                await interstitialAd.show();
+              }
             },
             icon: SvgPicture.asset(
               'assets/images/wp.svg',
