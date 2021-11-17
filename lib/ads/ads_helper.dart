@@ -1,6 +1,6 @@
 import 'dart:io';
 
-class AdsHelper { 
+class AdsHelper {
   static String get rectangleAdUnitId {
     if (Platform.isAndroid) {
       return 'ca-app-pub-7265627105635702/9156599510';
@@ -10,6 +10,7 @@ class AdsHelper {
       throw UnsupportedError('Unsupported platform');
     }
   }
+
   static String get interstitialAds {
     if (Platform.isAndroid) {
       return 'ca-app-pub-7265627105635702/4392503203';
@@ -18,5 +19,5 @@ class AdsHelper {
     } else {
       throw UnsupportedError('Unsupported platform');
     }
-  } 
+  }
 }

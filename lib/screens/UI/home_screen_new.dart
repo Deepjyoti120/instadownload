@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getprofile/ads/ads_helper.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
+import 'package:getprofile/screens/UI/downloaded/home.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
@@ -12,7 +13,7 @@ import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-final interstitialAd = InterstitialAd(unitId: AdsHelper.interstitialAds); 
+final interstitialAd = InterstitialAd(unitId: AdsHelper.interstitialAds);
 
 class NewHomePage extends StatefulWidget {
   const NewHomePage({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _MyHomePageState extends State<NewHomePage> {
         default:
           break;
       }
-    }); 
+    });
     super.initState();
   }
 
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<NewHomePage> {
         actions: [
           IconButton(
             onPressed: () async {
-              photoNavigate(); 
+              photoNavigate();
               if (!interstitialAd.isAvailable) await interstitialAd.load();
               if (interstitialAd.isAvailable) {
                 await interstitialAd.show();
@@ -65,7 +66,13 @@ class _MyHomePageState extends State<NewHomePage> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              iNavigate();
+              if (!interstitialAd.isAvailable) await interstitialAd.load();
+              if (interstitialAd.isAvailable) {
+                await interstitialAd.show();
+              }
+            },
             icon: const Icon(FeatherIcons.download),
             color: Colors.blueGrey,
           )
@@ -122,6 +129,22 @@ class _MyHomePageState extends State<NewHomePage> {
           context,
           MaterialPageRoute(
             builder: (context) => const HomeWPDownload(),
+          ),
+        );
+        // ignore: empty_catches
+      } catch (e) {}
+    }
+  }
+
+  void iNavigate() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      try {
+        await Permission.storage.request();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeIDownload(),
           ),
         );
         // ignore: empty_catches

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
-import 'package:getprofile/screens/whatsapp/video_save.dart';
-import 'package:getprofile/screens/whatsapp/photos_save.dart';
+import 'package:getprofile/screens/UI/downloaded/photos_save.dart';
+import 'package:getprofile/screens/UI/downloaded/video_save.dart';
 import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 
-
-class HomeWPDownload extends StatefulWidget {
-  const HomeWPDownload({Key? key}) : super(key: key);
+class HomeIDownload extends StatefulWidget {
+  const HomeIDownload({Key? key}) : super(key: key);
 
   @override
-  _HomeWPDownloadState createState() => _HomeWPDownloadState();
+  _HomeIDownloadState createState() => _HomeIDownloadState();
 }
 
-class _HomeWPDownloadState extends State<HomeWPDownload> {
+class _HomeIDownloadState extends State<HomeIDownload> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -22,17 +21,9 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
         backgroundColor: Colors.white,
         elevation: 0.6,
         automaticallyImplyLeading: false,
-        title: Row(
-          children: const [
-            TextGradient(
-              text: "Status",
-              appbarfontsize: 26,
-            ),
-            TextGradient(
-              text: "Saver",
-              appbarfontsize: 16,
-            ),
-          ],
+        title: const TextGradient(
+          text: "I Downloaded",
+          appbarfontsize: 24,
         ),
       ),
       bottomNavigationBar: _buildBottomBar(),
@@ -65,8 +56,8 @@ class _HomeWPDownloadState extends State<HomeWPDownload> {
 
   Widget getBody() {
     List<Widget> pages = const [
-      PhotosDownload(),
-      VideoDownload(),
+      PhotosDownloaded(),
+      VideoDownloaded(),
     ];
     return IndexedStack(
       index: _currentIndex,
