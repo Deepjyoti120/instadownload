@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
-    <application android:usesCleartextTraffic="true" android:label="GetProfile" android:icon="@mipmap/ic_launcher">
+    <application android:usesCleartextTraffic="true" android:label="GetProfile" android:icon="@mipmap/ic_launcher" >
         <provider android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider" android:authorities="${applicationId}.flutter_downloader.provider" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
         </provider>
@@ -16,9 +16,11 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="example.com" android:pathPrefix="/invite" />
+                <!--TODO:  Add this filter, if you want support opening urls into your app-->
+                <data android:scheme="https" android:host="assamjoy.com" android:pathPrefix="/invite" />
             </intent-filter>
 
+            <!--TODO: Add this filter, if you want to support sharing text into your app-->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

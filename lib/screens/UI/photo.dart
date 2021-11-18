@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/shimmer.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PhotoSection extends StatefulWidget {
@@ -25,12 +26,19 @@ class PhotoSection extends StatefulWidget {
 }
 
 class _PhotoSectionState extends State<PhotoSection> {
-  final TextEditingController pastePhotoLink = TextEditingController();
+  late TextEditingController pastePhotoLink = TextEditingController();
   Getprofile flutterInsta = Getprofile();
   final _controller = NativeAdController();
+  late StreamSubscription intentDataStreamSubscription;
   @override
   void initState() {
     super.initState();
+    intentDataStreamSubscription =
+        ReceiveSharingIntent.getTextStream().listen((String value) {
+      setState(() {
+        pastePhotoLink.text = value;
+      });
+    }, onError: (err) {});
     _controller.onEvent.listen((e) {
       final event = e.keys.first;
       switch (event) {
@@ -45,6 +53,7 @@ class _PhotoSectionState extends State<PhotoSection> {
 
   @override
   void dispose() {
+    intentDataStreamSubscription.cancel();
     _controller.dispose();
     super.dispose();
   }
