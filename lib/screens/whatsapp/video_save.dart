@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:getprofile/screens/whatsapp/widgets/video_state.dart'; 
+import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
 import 'package:share/share.dart';
 
 class VideoDownload extends StatefulWidget {

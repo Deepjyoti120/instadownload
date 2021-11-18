@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:getprofile/screens/whatsapp/widgets/video_state.dart';
+import 'package:getprofile/screens/ui/repost/widgets/video_state.dart';
 
 class VideoDownloaded extends StatefulWidget {
   const VideoDownloaded({
@@ -53,8 +53,8 @@ class _VideoDownloadedState extends State<VideoDownloaded> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ConsFile(
-                  file: File(videoPath),
+                VideoState( 
+                  filePath: File(videoPath),
                   videoPath: videoPath,
                 ),
               ],

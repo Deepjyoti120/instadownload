@@ -4,7 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getprofile/ads/ads_helper.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
-import 'package:getprofile/screens/UI/downloaded/home.dart';
+import 'package:getprofile/screens/ui/repost/home.dart';
 import 'package:getprofile/screens/UI/photo.dart';
 import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
@@ -144,7 +144,7 @@ class _MyHomePageState extends State<NewHomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeIDownload(),
+            builder: (context) => const HomeRepost(),
           ),
         );
         // ignore: empty_catches

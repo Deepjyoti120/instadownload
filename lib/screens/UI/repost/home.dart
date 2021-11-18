@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:getprofile/screens/UI/bottomBar/custom_bar.dart';
-import 'package:getprofile/screens/UI/downloaded/photos_save.dart';
-import 'package:getprofile/screens/UI/downloaded/video_save.dart';
+import 'package:getprofile/screens/ui/repost/photos_save.dart';
+import 'package:getprofile/screens/ui/repost/video_save.dart';
 import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
 
-class HomeIDownload extends StatefulWidget {
-  const HomeIDownload({Key? key}) : super(key: key);
+class HomeRepost extends StatefulWidget {
+  const HomeRepost({Key? key}) : super(key: key);
 
   @override
-  _HomeIDownloadState createState() => _HomeIDownloadState();
+  _HomeRepostState createState() => _HomeRepostState();
 }
 
-class _HomeIDownloadState extends State<HomeIDownload> {
+class _HomeRepostState extends State<HomeRepost> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
