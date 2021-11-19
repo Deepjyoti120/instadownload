@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +11,7 @@ import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/shimmer.dart';
+import 'package:getprofile/services/intent.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,6 +27,29 @@ class VideoSection extends StatefulWidget {
 class _VideoSectionState extends State<VideoSection> {
   final TextEditingController videoPhotoLink = TextEditingController();
   Getprofile flutterInsta = Getprofile();
+  String _shareTextController = "";
+  @override
+  void initState() {
+    super.initState();
+    ShareService()
+      ..onDataReceived = _handleSharedData
+      ..getSharedData().then(_handleSharedData);
+  }
+
+  void _handleSharedData(String sharedData) {
+    setState(() {
+      String s = sharedData;
+      var uri = Uri.parse(s);
+      String ws = uri.pathSegments.first;
+      _shareTextController = ws;
+      if (_shareTextController == 'reel') {
+        videoPhotoLink.text = sharedData;
+      } else {
+        videoPhotoLink.text = '';
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -10,6 +10,7 @@ import 'package:getprofile/screens/UI/profile.dart';
 import 'package:getprofile/screens/UI/video.dart';
 import 'package:getprofile/screens/whatsapp/home.dart';
 import 'package:getprofile/screens/widgets/gradient/text_gradient.dart';
+import 'package:getprofile/services/intent.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -23,8 +24,20 @@ class NewHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<NewHomePage> {
   int _currentIndex = 0;
+  String _sharedText = '';
+  String tabChoice = '';
   @override
   void initState() {
+    // ::::
+    // Create the share service
+    ShareService()
+      // Register a callback so that we handle shared data if it arrives while the
+      // app is running
+      ..onDataReceived = _handleSharedData
+      // Check to see if there is any shared data already, meaning that the app
+      // was launched via sharing.
+      ..getSharedData().then(_handleSharedData);
+    // ::::
     if (!interstitialAd.isLoaded) interstitialAd.load();
     interstitialAd.onEvent.listen((e) {
       final event = e.keys.first;
@@ -37,6 +50,24 @@ class _MyHomePageState extends State<NewHomePage> {
       }
     });
     super.initState();
+  }
+
+  /// Handles any shared data we may receive.
+  void _handleSharedData(String sharedData) {
+    setState(() {
+      _sharedText = sharedData;
+      String s = _sharedText;
+      var uri = Uri.parse(s);
+      String ws = uri.pathSegments.first;
+      tabChoice = ws;
+      if (tabChoice == "reel") {
+        _currentIndex = 2;
+      } else if (tabChoice == "p") {
+        _currentIndex = 1;
+      } else {
+        _currentIndex = 0;
+      }
+    });
   }
 
   @override

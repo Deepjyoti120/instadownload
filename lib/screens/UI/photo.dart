@@ -10,8 +10,7 @@ import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/shimmer.dart';
-import 'package:getprofile/services/intent.dart';
-import 'package:native_admob_flutter/native_admob_flutter.dart';
+import 'package:getprofile/services/intent.dart'; 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,9 +25,8 @@ class PhotoSection extends StatefulWidget {
 
 class _PhotoSectionState extends State<PhotoSection> {
   late TextEditingController pastePhotoLink = TextEditingController();
-  Getprofile flutterInsta = Getprofile();
-  final _controller = NativeAdController();
-  // String _sharedText = "";
+  Getprofile flutterInsta = Getprofile(); 
+  String _shareTextController = "";
   @override
   void initState() {
     super.initState();
@@ -41,29 +39,26 @@ class _PhotoSectionState extends State<PhotoSection> {
       // Check to see if there is any shared data already, meaning that the app
       // was launched via sharing.
       ..getSharedData().then(_handleSharedData);
-    // ::::
-    _controller.onEvent.listen((e) {
-      final event = e.keys.first;
-      switch (event) {
-        case NativeAdEvent.loaded:
-          break;
-        default:
-          break;
-      }
-    });
-    _controller.load();
+    // :::: 
   }
 
   /// Handles any shared data we may receive.
   void _handleSharedData(String sharedData) {
     setState(() {
-      pastePhotoLink.text = sharedData;
+      String s = sharedData;
+      var uri = Uri.parse(s);
+      String ws = uri.pathSegments.first;
+      _shareTextController = ws;
+      if (_shareTextController == 'p') {
+        pastePhotoLink.text = sharedData;
+      } else {
+        pastePhotoLink.text = '';
+      }
     });
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
+  void dispose() { 
     super.dispose();
   }
 

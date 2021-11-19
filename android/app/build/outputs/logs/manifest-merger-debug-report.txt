@@ -112,7 +112,7 @@ MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\Sam\.gradle\caches\trans
 		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:7:9-37
 	android:icon
 		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:8:9-43
-activity#com.example.instadownload.MainActivity
+activity#com.getprofile.downloader.MainActivity
 ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:18:9-47:20
 	android:requestLegacyExternalStorage
 		ADDED from D:\Projects\FlutterApp\instadownload\android\app\src\main\AndroidManifest.xml:24:13-56
