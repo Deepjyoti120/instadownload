@@ -40,14 +40,5 @@ class Getprofile {
     var shortcodeMedia = graphql['shortcode_media'];
     var getVideo = shortcodeMedia['video_url'];
     return getVideo;
-  }
-
-  math() {
-    var rng = Random();
-    for (var i = 0; i < 1; i++) {
-      int number = rng.nextInt(1000);
-      // print(number);
-      return number;
-    }
-  }
+  } 
 }
