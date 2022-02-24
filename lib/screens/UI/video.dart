@@ -291,7 +291,7 @@ class _VideoSectionState extends State<VideoSection> {
     );
   }
 
-  void downloadVideo() async {
+  downloadVideo() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
@@ -333,17 +333,41 @@ class _VideoSectionState extends State<VideoSection> {
     );
   }
 
-  void showSnackbarErrorVideo() {
+  Future reStartgetprofile() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      try {
+        var myvideourl = await flutterInsta.getInstaVideo(videoPhotoLink.text);
+        String s = myvideourl;
+        var uri = Uri.parse(s);
+        String ws = uri.pathSegments.last;
+        await FlutterDownloader.enqueue(
+          url: myvideourl,
+          fileName: ws,
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
+          showNotification: true,
+          openFileFromNotification: true,
+        ).whenComplete(() => showSnackbar());
+      } catch (e) {
+        return reStartgetprofile();
+      }
+    } else {
+      debugPrint("Permission deined");
+    }
+  }
+
+  showSnackbarErrorVideo() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 2),
         content: const Text(
-          "Please View link and try again",
+         "Please try again",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.red[700],
         behavior: SnackBarBehavior.floating,
       ),
     );
+    return reStartgetprofile();
   }
 }

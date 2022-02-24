@@ -10,7 +10,7 @@ import 'package:getprofile/screens/widgets/center_floatbtn.dart';
 import 'package:getprofile/screens/widgets/gradient/getprofile_bg_color.dart';
 import 'package:getprofile/screens/widgets/progress_awesome.dart';
 import 'package:getprofile/screens/widgets/shimmer.dart';
-import 'package:getprofile/services/intent.dart'; 
+import 'package:getprofile/services/intent.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,7 +25,7 @@ class PhotoSection extends StatefulWidget {
 
 class _PhotoSectionState extends State<PhotoSection> {
   late TextEditingController pastePhotoLink = TextEditingController();
-  Getprofile flutterInsta = Getprofile(); 
+  Getprofile flutterInsta = Getprofile();
   String _shareTextController = "";
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _PhotoSectionState extends State<PhotoSection> {
       // Check to see if there is any shared data already, meaning that the app
       // was launched via sharing.
       ..getSharedData().then(_handleSharedData);
-    // :::: 
+    // ::::
   }
 
   /// Handles any shared data we may receive.
@@ -58,7 +58,7 @@ class _PhotoSectionState extends State<PhotoSection> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     super.dispose();
   }
 
@@ -301,7 +301,7 @@ class _PhotoSectionState extends State<PhotoSection> {
     );
   }
 
-  void downloadPhoto() async {
+  downloadPhoto() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
       try {
@@ -343,17 +343,41 @@ class _PhotoSectionState extends State<PhotoSection> {
     );
   }
 
-  void showSnackbarErrorPhoto() {
+  Future reStartgetprofile() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      try {
+        var getvideourl = await flutterInsta.getPostPhoto(pastePhotoLink.text);
+        String s = getvideourl;
+        var uri = Uri.parse(s);
+        String ws = uri.pathSegments.last;
+        await FlutterDownloader.enqueue(
+          url: getvideourl,
+          fileName: ws,
+          savedDir: '/storage/emulated/0/Download/GetProfile/',
+          showNotification: true,
+          openFileFromNotification: true,
+        ).whenComplete(() => showSnackbar());
+      } catch (e) {
+        return reStartgetprofile();
+      }
+    } else {
+      debugPrint("Permission deined");
+    }
+  }
+
+  showSnackbarErrorPhoto() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 2),
         content: const Text(
-          "Please View link and try again",
+          "Please try again",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.red[700],
         behavior: SnackBarBehavior.floating,
       ),
     );
+    return reStartgetprofile();
   }
 }
